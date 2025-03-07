@@ -1,0 +1,78 @@
+/* styles.css */
+@charset "UTF-8";
+
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background-color: black;
+    color: white;
+    font-family: Tahoma, 'sans-serif';
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-top: 40px;
+    text-transform: uppercase;
+}
+
+/* Header Styling */
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 3rem;
+    color: #e99b51;
+    font-family: Tahoma, 'sans-serif';
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Container Styling */
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 600px;
+}
+
+/* Image Styling */
+.description-image {
+    width: 100%;
+    max-width: 500px; /* Limit image width */
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+    }
+}
