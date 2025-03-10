@@ -19,6 +19,43 @@
 
         <!-- Add image below the description -->
         <img src="./cloud.png" alt="Cloud Image" class="description-image">
+
+        <!-- Questions Section -->
+        <div class="questions">
+            <form id="questions">
+                <div class="question">
+                    <label for="who">Who Are You?</label>
+                    <textarea id="who" name="who" rows="4" placeholder="Your answer..."></textarea>
+                </div>
+                <div class="question">
+                    <label for="where">Where Are You From?</label>
+                    <textarea id="where" name="where" rows="4" placeholder="Your answer..."></textarea>
+                </div>
+                <div class="question">
+                    <label for="why">Why Are You Alive?</label>
+                    <textarea id="why" name="why" rows="4" placeholder="Your answer..."></textarea>
+                </div>
+                <div class="question">
+                    <label for="what">What Can You Do?</label>
+                    <textarea id="what" name="what" rows="4" placeholder="Your answer..."></textarea>
+                </div>
+                <div class="question">
+                    <label for="whereGoing">Where Are You Going?</label>
+                    <textarea id="whereGoing" name="whereGoing" rows="4" placeholder="Your answer..."></textarea>
+                </div>
+
+                <!-- The Submit button triggers form submission -->
+                <button type="button" id="submitButton">Submit Answers</button>
+            </form>
+
+            <!-- Display the insights here -->
+            <div id="insightsDisplay" style="margin-top: 20px; color: #e99b51;">
+                <!-- The chatbot's insights will be displayed here -->
+            </div>
+        </div>
     </div>
+
+    <!-- Link to the external script.js file -->
+    <script src="script.js"></script>
 </body>
 </html>
