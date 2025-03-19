@@ -1,38 +1,31 @@
-// This script handles form submission and communicates with the backend.
+// Ensure the JavaScript runs when the page is fully loaded
+window.onload = function() {
+    // Get the 'submitButton' by its ID (the think-button.png image)
+    const submitButton = document.getElementById("submitButton");
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Ensure that the form's submit button triggers the submitForm function
-    document.getElementById("submitButton").addEventListener("click", submitForm);
-});
+    // Add an event listener for the 'click' event on the submit button
+    submitButton.addEventListener("click", function() {
+        // Get values from the text areas
+        const whoAnswer = document.getElementById("who").value;
+        const whereAnswer = document.getElementById("where").value;
+        const whyAnswer = document.getElementById("why").value;
+        const whatAnswer = document.getElementById("what").value;
+        const whereGoingAnswer = document.getElementById("whereGoing").value;
 
-async function submitForm() {
-    // Collect user answers from the textareas
-    const answers = {
-        who: document.getElementById('who').value,
-        where: document.getElementById('where').value,
-        why: document.getElementById('why').value,
-        what: document.getElementById('what').value,
-        whereGoing: document.getElementById('whereGoing').value,
-    };
+        // Save these answers to localStorage
+        localStorage.setItem("whoAnswer", whoAnswer);
+        localStorage.setItem("whereAnswer", whereAnswer);
+        localStorage.setItem("whyAnswer", whyAnswer);
+        localStorage.setItem("whatAnswer", whatAnswer);
+        localStorage.setItem("whereGoingAnswer", whereGoingAnswer);
 
-    try {
-        // Send the answers to the backend using fetch
-        const response = await fetch('/get-insights/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(answers),
-        });
+        // Redirect to questions-page.html
+        window.location.href = "questions-page.html";
+    });
 
-        // Parse the response from the backend (assumes JSON format)
-        const data = await response.json();
-
-        // Display the insights received from the backend
-        const insightsDisplay = document.getElementById('insightsDisplay');
-        insightsDisplay.innerHTML = `<h3>Insights to Deepen Your Answers:</h3><p>${data.insights}</p>`;
-    } catch (error) {
-        // Log any error that occurs during the fetch request
-        console.error('Error fetching insights:', error);
-    }
-}
+    // Add event listener for q1-button to redirect to q1-page.html
+    const q1Button = document.getElementById("q1-button");
+    q1Button.addEventListener("click", function() {
+        window.location.href = "q1-page.html";
+    });
+};
