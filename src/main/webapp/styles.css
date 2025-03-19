@@ -1,4 +1,3 @@
-/* General reset to remove default margins and padding */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +16,7 @@ body {
     margin: 0;
 }
 
-/* Header section */
+/* Header section with positioning for logo and login button */
 .header {
     position: relative;
     display: flex;
@@ -30,7 +29,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Image */
+/* Styling for the left logo image */
 .left-image {
     position: absolute;
     left: 0;
@@ -39,13 +38,13 @@ body {
     width: auto;
 }
 
-/* Center Image */
+/* Styling for the center image (title) */
 .center-image {
     height: 60px;
     width: auto;
 }
 
-/* Right Image */
+/* Styling for the right login button image */
 .right-image {
     position: absolute;
     right: 0;
@@ -54,7 +53,7 @@ body {
     width: auto;
 }
 
-/* Summary Section */
+/* Container for the summary section */
 .summary-section-container {
     width: 100%;
     text-align: center;
@@ -63,14 +62,14 @@ body {
     justify-content: center;
 }
 
-/* The image in the summary section */
+/* Styling for the summary section image */
 .summary-section {
     width: 100%;
     max-width: calc(100% - 88px);
     height: auto;
 }
 
-/* Questions Container */
+/* Container for the questions section */
 .questions-container {
     width: 100%;
     display: flex;
@@ -80,7 +79,7 @@ body {
     align-items: center;
 }
 
-/* Styling for the form inside the questions-container */
+/* Form inside the questions section */
 .questions form {
     width: 100%;
     max-width: 1000px;
@@ -90,20 +89,20 @@ body {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for individual question containers */
+/* Individual question styling */
 .question {
     margin-bottom: 30px;
     text-align: center;
 }
 
-/* Styling for the question image (text images) */
+/* Styling for the question image (text images above each textarea) */
 .question-image {
     width: auto;
     height: 30px;
     margin-bottom: 10px;
 }
 
-/* Textarea styling */
+/* Styling for textareas where users input answers */
 textarea {
     width: 100%;
     padding: 20px;
@@ -116,7 +115,7 @@ textarea {
     min-height: 160px;
 }
 
-/* Submit Button (Image) */
+/* Container and styling for the submit button */
 .submit-button-container {
     width: 100%;
     display: flex;
@@ -130,7 +129,79 @@ textarea {
     cursor: pointer;
 }
 
-/* Optional: Add hover effect to the button image */
+/* Hover effect for the submit button */
 .submit-button:hover {
     opacity: 0.8;
+}
+
+/* Media query for tablets and smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Adjust header layout for smaller screens */
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    /* Adjust images in header (logo and button) for smaller screens */
+    .left-image, .center-image, .right-image {
+        position: relative;
+        margin: 10px 0;
+        height: 50px;
+    }
+
+    /* Display summary section normally on mobile */
+    .summary-section-container {
+        display: block;
+    }
+
+    /* Adjust the form width and padding for mobile */
+    .questions form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Adjust question image height for smaller screens */
+    .question-image {
+        height: 25px;
+    }
+
+    /* Reduce textarea height for better fit on mobile */
+    textarea {
+        min-height: 120px;
+    }
+
+    /* Adjust the submit button size */
+    .submit-button {
+        height: 40px;
+    }
+}
+
+/* Media query for extra small screens (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Further adjust images in the header for small screens */
+    .left-image, .center-image, .right-image {
+        height: 40px;
+    }
+
+    /* Ensure summary section takes full width on very small screens */
+    .summary-section {
+        max-width: 100%;
+    }
+
+    /* Adjust form width and padding to fit smaller screens */
+    .questions form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    /* Further reduce textarea height on extra small screens */
+    textarea {
+        min-height: 100px;
+    }
+
+    /* Reduce the submit button size for mobile */
+    .submit-button {
+        height: 35px;
+    }
 }
