@@ -6,7 +6,7 @@
 
 /* Body setup */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Istok Web', Arial, sans-serif; /* Istok Web as the primary font */
     background-color: black;
     color: white;
     display: flex;
@@ -104,7 +104,7 @@ body {
 
 /* Styling for textareas where users input answers */
 textarea {
-    width: 100%;
+    width: 100%; /* Make it take up the full width of the parent container */
     padding: 20px;
     font-size: 13px;
     border: 4px solid #150900;
@@ -113,6 +113,18 @@ textarea {
     background-color: #222;
     color: white;
     min-height: 160px;
+    max-width: 1000px; /* Add a max-width to ensure it doesn't stretch too much */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.answer-section {
+    width: 100%;
+    max-width: 1000px; /* Ensure the answer section aligns with the text box */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* This centers the text horizontally */
+    font-size: 14px;
+    margin-bottom: 20px; 
 }
 
 /* Container and styling for the submit button */
@@ -139,8 +151,7 @@ textarea {
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack the buttons vertically in a column */
     justify-content: space-between; /* Distribute buttons with space between */
-    padding: 37px; /* Add 37px padding from the edges of the page */
-    height: calc(100vh - 74px); /* Ensure the container takes full height minus padding */
+    padding: 10px; /* Add 37px padding from the edges of the page */
     box-sizing: border-box; /* Include padding in the container’s total width/height */
 }
 
