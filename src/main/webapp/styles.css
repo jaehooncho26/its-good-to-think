@@ -1,137 +1,136 @@
-/* styles.css */
-@charset "UTF-8";
-
-/* Reset default margin and padding for all elements */
+/* General reset to remove default margins and padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
+/* Body setup */
 body {
+    font-family: Arial, sans-serif;
     background-color: black;
     color: white;
-    font-family: Tahoma, 'sans-serif';
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    padding: 0;
     margin: 0;
-    padding-top: 40px;
-    text-transform: uppercase;
 }
 
-/* Header Styling */
+/* Header section */
 .header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 20px 0;
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Image */
+.left-image {
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+    height: 60px;
+    width: auto;
+}
+
+/* Center Image */
+.center-image {
+    height: 60px;
+    width: auto;
+}
+
+/* Right Image */
+.right-image {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    height: 60px;
+    width: auto;
+}
+
+/* Summary Section */
+.summary-section-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+/* The image in the summary section */
+.summary-section {
+    width: 100%;
+    max-width: calc(100% - 88px);
+    height: auto;
+}
+
+/* Questions Container */
+.questions-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    text-align: center;
-    padding: 20px;
-}
-
-/* Logo Styling */
-.logo {
-    font-size: 3rem;
-    color: #e99b51;
-    font-family: Tahoma, 'sans-serif';
-    padding: 10px 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Container Styling */
-.container {
-    text-align: center;
-    display: flex;
+    background-color: black;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+/* Styling for the form inside the questions-container */
+.questions form {
+    width: 100%;
+    max-width: 1000px;
     background-color: black;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
-    width: 600px;
-}
-
-/* Image Styling */
-.description-image {
-    width: 100%;
-    max-width: 500px; /* Limit image width */
-    margin-top: 20px;
     border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for each question section */
+/* Styling for individual question containers */
 .question {
-	margin-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-.question label {
-	display: block;
-	font-size: 1.2rem;
-	color: #e99b51;
-	margin-bottom: 8px;
-	text-align: left;
+/* Styling for the question image (text images) */
+.question-image {
+    width: auto;
+    height: 30px;
+    margin-bottom: 10px;
 }
 
-.question textarea {
-	width: 100%;
-	height: 120px; /* Adjusted height for textareas */
-	padding: 10px;
-	font-size: 1rem;
-	border: 2px solid #e99b51;
-	border-radius: 10px;
-	background-color: #333;
-	color: white;
-	resize: none;
+/* Textarea styling */
+textarea {
+    width: 100%;
+    padding: 20px;
+    font-size: 13px;
+    border: 4px solid #150900;
+    border-radius: 6px;
+    resize: vertical;
+    background-color: #222;
+    color: white;
+    min-height: 160px;
 }
 
-.question textarea:focus {
-	outline: none;
-	border-color: #f0b04e;
-	background-color: #444;
+/* Submit Button (Image) */
+.submit-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 
-button[type="button"] {
-	background-color: #e99b51;
-	color: white;
-	font-size: 1rem;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	margin-top: 20px;	
+.submit-button {
+    width: auto;
+    height: 50px;
+    cursor: pointer;
 }
 
-button[type="button"]:hover{
-	background-color: #f0b04e;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        width: 100%;
-    }
-
-    .logo {
-        font-size: 2.5rem;
-    }
-    
-    .question label {
-    	font-size: 1rem;
-    }
-    
-    .question textarea {
-    	height: 100px;
-    }
-    
-    button[type="button"] {
-    	width: 100%;
-    	padding: 12px;
-    }
+/* Optional: Add hover effect to the button image */
+.submit-button:hover {
+    opacity: 0.8;
 }
