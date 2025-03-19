@@ -134,3 +134,71 @@ textarea {
 .submit-button:hover {
     opacity: 0.8;
 }
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    /* Header section: Stack the images vertically on smaller screens */
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .left-image, .center-image, .right-image {
+        position: relative;
+        margin: 10px 0;
+        height: 50px;
+    }
+
+    .summary-section-container {
+        display: block;
+    }
+
+    /* Make the form smaller on mobile */
+    .questions form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Adjust question image size */
+    .question-image {
+        height: 25px;
+    }
+
+    /* Reduce text area height on mobile */
+    textarea {
+        min-height: 120px;
+    }
+
+    /* Adjust the submit button size */
+    .submit-button {
+        height: 40px;
+    }
+}
+
+/* Media Queries for Extra Small Mobile Devices */
+@media (max-width: 480px) {
+    /* Further reduce header images and space */
+    .left-image, .center-image, .right-image {
+        height: 40px;
+    }
+
+    .summary-section {
+        max-width: 100%;
+    }
+
+    /* Further reduce form size */
+    .questions form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    /* Make the textareas more compact */
+    textarea {
+        min-height: 100px;
+    }
+
+    .submit-button {
+        height: 35px;
+    }
+}
