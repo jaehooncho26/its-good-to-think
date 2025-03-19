@@ -1,4 +1,3 @@
-/* General reset to remove default margins and padding */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +6,7 @@
 
 /* Body setup */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Istok Web', Arial, sans-serif; /* Istok Web as the primary font */
     background-color: black;
     color: white;
     display: flex;
@@ -17,7 +16,7 @@ body {
     margin: 0;
 }
 
-/* Header section */
+/* Header section with positioning for logo and login button */
 .header {
     position: relative;
     display: flex;
@@ -30,7 +29,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Image */
+/* Styling for the left logo image */
 .left-image {
     position: absolute;
     left: 0;
@@ -39,13 +38,13 @@ body {
     width: auto;
 }
 
-/* Center Image */
+/* Styling for the center image (title) */
 .center-image {
     height: 60px;
     width: auto;
 }
 
-/* Right Image */
+/* Styling for the right login button image */
 .right-image {
     position: absolute;
     right: 0;
@@ -54,7 +53,7 @@ body {
     width: auto;
 }
 
-/* Summary Section */
+/* Container for the summary section */
 .summary-section-container {
     width: 100%;
     text-align: center;
@@ -63,14 +62,14 @@ body {
     justify-content: center;
 }
 
-/* The image in the summary section */
+/* Styling for the summary section image */
 .summary-section {
     width: 100%;
     max-width: calc(100% - 88px);
     height: auto;
 }
 
-/* Questions Container */
+/* Container for the questions section */
 .questions-container {
     width: 100%;
     display: flex;
@@ -80,7 +79,7 @@ body {
     align-items: center;
 }
 
-/* Styling for the form inside the questions-container */
+/* Form inside the questions section */
 .questions form {
     width: 100%;
     max-width: 1000px;
@@ -90,22 +89,22 @@ body {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for individual question containers */
+/* Individual question styling */
 .question {
     margin-bottom: 30px;
     text-align: center;
 }
 
-/* Styling for the question image (text images) */
+/* Styling for the question image (text images above each textarea) */
 .question-image {
     width: auto;
     height: 30px;
     margin-bottom: 10px;
 }
 
-/* Textarea styling */
+/* Styling for textareas where users input answers */
 textarea {
-    width: 100%;
+    width: 100%; /* Make it take up the full width of the parent container */
     padding: 20px;
     font-size: 13px;
     border: 4px solid #150900;
@@ -114,9 +113,21 @@ textarea {
     background-color: #222;
     color: white;
     min-height: 160px;
+    max-width: 1000px; /* Add a max-width to ensure it doesn't stretch too much */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
 }
 
-/* Submit Button (Image) */
+.answer-section {
+    width: 100%;
+    max-width: 1000px; /* Ensure the answer section aligns with the text box */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* This centers the text horizontally */
+    font-size: 14px;
+    margin-bottom: 20px; 
+}
+
+/* Container and styling for the submit button */
 .submit-button-container {
     width: 100%;
     display: flex;
@@ -130,7 +141,108 @@ textarea {
     cursor: pointer;
 }
 
-/* Optional: Add hover effect to the button image */
+/* Hover effect for the submit button */
 .submit-button:hover {
     opacity: 0.8;
+}
+
+/* Styling for the container of the question buttons */
+.questions-button-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack the buttons vertically in a column */
+    justify-content: space-between; /* Distribute buttons with space between */
+    padding: 10px; /* Add 37px padding from the edges of the page */
+    box-sizing: border-box; /* Include padding in the container’s total width/height */
+}
+
+/* Styling for individual buttons (which are image elements) */
+.question-button {
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to indicate clickable button */
+    margin: 15px 0; /* Add margin between buttons for spacing */
+}
+
+/* Styling for images inside the buttons */
+.question-button img {
+    width: 100%; /* Make the image width 100% of its container */
+    height: auto; /* Maintain the aspect ratio of images */
+    transition: transform 0.3s ease; /* Add smooth transition effect for hover */
+}
+
+/* Hover effect for images inside the buttons */
+.question-button img:hover {
+    transform: scale(1.05); /* Scale image slightly when hovered */
+}
+
+/* Media query for tablets and smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Adjust header layout for smaller screens */
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    /* Adjust images in header (logo and button) for smaller screens */
+    .left-image, .center-image, .right-image {
+        position: relative;
+        margin: 10px 0;
+        height: 50px;
+    }
+
+    /* Display summary section normally on mobile */
+    .summary-section-container {
+        display: block;
+    }
+
+    /* Adjust the form width and padding for mobile */
+    .questions form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Adjust question image height for smaller screens */
+    .question-image {
+        height: 25px;
+    }
+
+    /* Reduce textarea height for better fit on mobile */
+    textarea {
+        min-height: 120px;
+    }
+
+    /* Adjust the submit button size */
+    .submit-button {
+        height: 40px;
+    }
+}
+
+/* Media query for extra small screens (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Further adjust images in the header for small screens */
+    .left-image, .center-image, .right-image {
+        height: 40px;
+    }
+
+    /* Ensure summary section takes full width on very small screens */
+    .summary-section {
+        max-width: 100%;
+    }
+
+    /* Adjust form width and padding to fit smaller screens */
+    .questions form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    /* Further reduce textarea height on extra small screens */
+    textarea {
+        min-height: 100px;
+    }
+
+    /* Reduce the submit button size for mobile */
+    .submit-button {
+        height: 35px;
+    }
 }
