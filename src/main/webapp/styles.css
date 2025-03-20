@@ -246,3 +246,61 @@ textarea {
         height: 35px;
     }
 }
+
+/* Styles specific to the signup page */
+form {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* Max width to make the form more compact */
+    text-align: center;
+    margin-top: 50px;
+}
+
+label {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px 0; /* Adds spacing between form elements */
+    background-color: #333;
+    border: 2px solid #444;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: rgb(64, 0, 0); /* Green color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: black;
+}
+
+#error-message, #success-message {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#error-message {
+    color: red;
+}
+
+#success-message {
+    color: green;
+}
