@@ -6,11 +6,11 @@ window.onload = function() {
     // Add an event listener for the 'click' event on the submit button
     submitButton.addEventListener("click", function() {
         // Get values from the text areas
-        const whoAnswer = document.getElementById("who").value;
-        const whereAnswer = document.getElementById("where").value;
-        const whyAnswer = document.getElementById("why").value;
-        const whatAnswer = document.getElementById("what").value;
-        const whereGoingAnswer = document.getElementById("whereGoing").value;
+        const whoAnswer = document.getElementById("q1").value;
+        const whereAnswer = document.getElementById("q2").value;
+        const whyAnswer = document.getElementById("q3").value;
+        const whatAnswer = document.getElementById("q4").value;
+        const whereGoingAnswer = document.getElementById("q5").value;
 
         // Save these answers to localStorage
         localStorage.setItem("whoAnswer", whoAnswer);
