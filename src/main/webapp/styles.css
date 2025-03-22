@@ -117,6 +117,16 @@ textarea {
     box-sizing: border-box; /* Ensure padding is included in the width calculation */
 }
 
+.email{
+	    font-weight: bold;
+	    font-size: 1em;
+	    
+}
+
+.password{
+	    font-weight: bold;
+}
+
 .answer-section {
     width: 100%;
     max-width: 1000px; /* Ensure the answer section aligns with the text box */
@@ -249,14 +259,17 @@ textarea {
 
 /* Styles specific to the signup page */
 form {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+    border-radius: 0px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px; /* Max width to make the form more compact */
-    text-align: center;
+    text-align: left;
     margin-top: 50px;
+    font-family: 'Istok Web', Arial, sans-serif; 
+    color: rgb(0, 0, 0)
+    
 }
 
 label {
@@ -278,7 +291,7 @@ input {
 
 button {
     padding: 12px 20px;
-    background-color: rgb(64, 0, 0); /* Green color */
+    background-color: black;
     border: none;
     border-radius: 5px;
     color: white;

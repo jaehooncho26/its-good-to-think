@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>sign up</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="header">
+        <img src="think-logo.png" alt="Left Image" class="left-image">
+        <img src="its-good-to-think-text.png" alt="Center Image" class="center-image">
+        <img src="login-button.png" alt="Right Image" class="right-image">
+    </header>
     <div class="container">
-        <h1>Sign Up</h1>
+        <h1>sign up</h1>
         <form id="signup-form" aria-label="Sign Up Form">
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">email:</label>
                 <input type="email" id="email" name="email" required aria-required="true" placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">password:</label>
                 <input type="password" id="password" name="password" required aria-required="true" placeholder="Enter your password" minlength="6">
             </div>
-            <button type="submit">Sign Up</button>
+            <button type="submit">sign up</button>
         </form>
         <p id="error-message" class="message" style="color: red;"></p>
         <p id="success-message" class="message" style="color: green;"></p>

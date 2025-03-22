@@ -1,25 +1,41 @@
-// Ensure the JavaScript runs when the page is fully loaded
-window.onload = function() {
-    // Get the 'submitButton' by its ID (the think-button.png image)
+// Use DOMContentLoaded for faster execution
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the submit button
     const submitButton = document.getElementById("submitButton");
 
-    // Add an event listener for the 'click' event on the submit button
+    // Check if the button exists
+    if (!submitButton) {
+        console.error("Submit button not found.");
+        return;
+    }
+
+    // Add click event listener
     submitButton.addEventListener("click", function() {
-        // Get values from the text areas
-        const whoAnswer = document.getElementById("q1").value;
-        const whereAnswer = document.getElementById("q2").value;
-        const whyAnswer = document.getElementById("q3").value;
-        const whatAnswer = document.getElementById("q4").value;
-        const whereGoingAnswer = document.getElementById("q5").value;
+        // Get all text area elements
+        const q1 = document.getElementById("q1");
+        const q2 = document.getElementById("q2");
+        const q3 = document.getElementById("q3");
+        const q4 = document.getElementById("q4");
+        const q5 = document.getElementById("q5");
 
-        // Save these answers to localStorage
-        localStorage.setItem("whoAnswer", whoAnswer);
-        localStorage.setItem("whereAnswer", whereAnswer);
-        localStorage.setItem("whyAnswer", whyAnswer);
-        localStorage.setItem("whatAnswer", whatAnswer);
-        localStorage.setItem("whereGoingAnswer", whereGoingAnswer);
+        // Get values and store them in an object with keys q1 to q5
+        const answers = {
+            q1: q1.value,
+            q2: q2.value,
+            q3: q3.value,
+            q4: q4.value,
+            q5: q5.value
+        };
 
-        // Redirect to questions-page.html
-        window.location.href = "questions-page.html";
+        // Save to localStorage as a single JSON string
+        localStorage.setItem("answers", JSON.stringify(answers));
+
+        // Provide user feedback
+        alert("Answers saved successfully!");
+
+        // Delay redirect to allow feedback visibility
+        setTimeout(function() {
+            window.location.href = "questions-page.html";
+        }, 1000); // Redirect after 1 second
     });
-};
+});

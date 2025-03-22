@@ -1,7 +1,4 @@
-// Ensure the JavaScript runs when the page is fully loaded
-window.onload = function() {
-
-    // Add event listener for q1-button to redirect to q1-page.html
+// Add event listener for q1-button to redirect to q1-page.html
     const q1Button = document.getElementById("q1-button");
     q1Button.addEventListener("click", function() {
         window.location.href = "q1-page.html";
@@ -31,4 +28,3 @@ window.onload = function() {
 	saveButton.addEventListener("click", function() {
 	    window.location.href = "signup-page.html";
 	});
-};
