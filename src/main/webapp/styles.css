@@ -30,7 +30,7 @@ body {
 }
 
 /* Styling for the left logo image */
-.left-image {
+.logo-image {
     position: absolute;
     left: 0;
     margin-left: 20px;
@@ -39,13 +39,13 @@ body {
 }
 
 /* Styling for the center image (title) */
-.center-image {
+.title-name-image {
     height: 60px;
     width: auto;
 }
 
 /* Styling for the right login button image */
-.right-image {
+.login-button-image {
     position: absolute;
     right: 0;
     margin-right: 20px;
@@ -138,6 +138,19 @@ textarea {
 }
 
 /* Container and styling for the submit button */
+.login-button-container {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    height: 60px;
+    width: auto;
+}
+/* Hover effect for the submit button */
+.login-button-image:hover {
+    opacity: 0.8;
+}
+
+/* Container and styling for the submit button */
 .submit-button-container {
     width: 100%;
     display: flex;
@@ -182,7 +195,8 @@ textarea {
 
 /* Hover effect for images inside the buttons */
 .question-button img:hover {
-    transform: scale(1.05); /* Scale image slightly when hovered */
+    /*transform: scale(1.05); Scale image slightly when hovered */
+    opacity: 0.8;
 }
 
 /* Media query for tablets and smaller screens (max-width: 768px) */

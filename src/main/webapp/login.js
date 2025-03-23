@@ -35,9 +35,9 @@ loginForm.addEventListener('submit', async function(event) {
         // Retrieve answers from localStorage
         const answers = JSON.parse(localStorage.getItem('answers'));
         if (answers) {
-            // Insert answers into Supabase
+            // Insert answers into Supabase using the correct table name
             const { error: insertError } = await supabaseClient
-                .from('answers')
+                .from('user_answers')  // Updated to 'user_answers'
                 .insert([{
                     user_id: userId,
                     q1: answers.q1,
@@ -58,7 +58,7 @@ loginForm.addEventListener('submit', async function(event) {
 
         // Optionally redirect to another page after login
         // Uncomment the line below if desired
-        // window.location.href = 'profile.html';
+        window.location.href = 'questions-page.html';
 
     } catch (err) {
         errorMessage.textContent = 'An unexpected error occurred. Please try again.';
