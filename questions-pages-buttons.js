@@ -29,6 +29,6 @@ window.onload = function() {
 	
 	const saveButton = document.getElementById("save-button");
 	saveButton.addEventListener("click", function() {
-	    window.location.href = "signup-page.html";
+	    //window.location.href = "signup-page.html";
 	});
 };
