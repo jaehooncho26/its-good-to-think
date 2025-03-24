@@ -32,51 +32,117 @@
         <h2>who are you?</h2>
         <!-- Use a textarea to display the answer in the same box style as the original input -->
         <textarea id="q1Display" readonly></textarea>
+        <button id="refresh-button">Refresh Answer</button>
+        <textarea id="q1Display2" readonly></textarea>
+        <a id="reply-button" href="#" class="reply-button">Reply</a>
     </div>
 
     <!-- Link to the external script.js file (if needed) -->
     <script src="script.js"></script>
 
     <script>
-        // Initialize Supabase client with your project URL and anon key
-        const supabaseClient = supabase.createClient('https://aqpyxfjhlypevabhrdxs.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcHl4ZmpobHlwZXZhYmhyZHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MjgyODIsImV4cCI6MjA1ODAwNDI4Mn0.dXeKewJjtQG6EeQ7y-g7KwKjoK7i1dKrXmb6LnDzm5E');
+    
+	// Initialize Supabase client with your URL and key
+	const supabaseUrl = 'https://aqpyxfjhlypevabhrdxs.supabase.co';
+	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcHl4ZmpobHlwZXZhYmhyZHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MjgyODIsImV4cCI6MjA1ODAwNDI4Mn0.dXeKewJjtQG6EeQ7y-g7KwKjoK7i1dKrXmb6LnDzm5E';
+	const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Fetch and display q1 data when the page loads
-        window.onload = async function() {
-            const answerDisplayElement = document.getElementById("q1Display");
+    // Fetch and display q1 data when the page loads
+	window.onload = async function() {
+    	const answerDisplayElement = document.getElementById("q1Display");
+    	try {
+        	const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+        	if (userError) throw userError;
+        	
+        	if (user) {
+        		const { data, error } = await supabaseClient
+        		.from('user_answers')
+        	    .select('q1')
+        	    .eq('user_id', user.id)
+        	    .order('id', { descending: true })
+        	    .limit(1);
+        		if (error) throw error;
+        			console.log('Fetched data:', data);
+        		if (data.length == 1) {
+        	    	answerDisplayElement.value = data[0].q1 || '...';
+        		} else {
+        	    	answerDisplayElement.value = '...';
+        		}
+      		} else {
+         		answerDisplayElement.value = 'Please log in to see your answer';
+      		}
+    	} catch (error) {
+        	if (error.status == 406) {
+            	answerDisplayElement.value = 'Server error: resource not acceptable. Please try again later';
+        	} else if (error.message.includes('JSON object requested, multiple (or no) rows returned')) {
+            	answerDisplayElement.value = 'No answer found';
+        	} else {
+            	console.error('Error fetching data:', error);
+            	answerDisplayElement.value = 'Error fetching data';
+        	}
+    	}
+    	
+    	const answerDisplay2Element = document.getElementById("q1Display2");
+    	try {
+    	    const { data, error } = await supabaseClient
+    	        .from('user_answers')
+    	        .select('id, q1')
+    	        .order('id', { descending: true })
+    	        .limit(1);
+    	    if (error) throw error;
+    	    console.log('Fetched data:', data);
+    	    if (data.length == 1) {
+    	        answerDisplay2Element.value = data[0].q1 || '...';
+    	        const answer_id = data[0].id;
+    	        document.getElementById('reply-button').href = `q1-page-responses1.html?answer_id=${answer_id}`;
+    	    } else {
+    	        answerDisplay2Element.value = '...';
+    	    }
+    	} catch (error) {
+    	    if (error.status == 406) {
+    	        answerDisplay2Element.value = 'Server error: resource not acceptable. Please try again later';
+    	    } else if (error.message.includes('JSON object requested, multiple (or no) rows returned')) {
+    	        answerDisplay2Element.value = 'No answer found';
+    	    } else {
+    	        console.error('Error fetching data:', error);
+    	        answerDisplay2Element.value = 'Error fetching data';
+    	    }
+    	}
+	};
 
-            try {
-                // Get the current authenticated user
-                const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
-				
-                if (userError) throw userError;
-
-                if (user) {
-                    // Query the 'user_answers' table for the user's 'q1' value
-                    const { data, error } = await supabaseClient
-                        .from('user_answers')
-                        .select('q1')
-                        .eq('user_id', user.id)  // Use the authenticated user's ID
-                        .single();               // Expect exactly one row
-
-                    if (error) throw error;
-
-                    // Display the fetched q1 value, or '...' if null
-                    answerDisplayElement.value = data.q1 || '...';
-                } else {
-                    // User not logged in
-                    answerDisplayElement.value = 'Please log in to see your answer';
-                }
-            } catch (error) {
-                // Handle specific error for no row found
-                if (error.message.includes('JSON object requested, multiple (or no) rows returned')) {
-                    answerDisplayElement.value = 'No answer found';
-                } else {
-                    console.error('Error fetching data:', error);
-                    answerDisplayElement.value = 'Error fetching data';
-                }
-            }
-        };
+	document.getElementById('refresh-button').addEventListener('click', async function() {
+    	try {
+    	    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    	    if (userError) throw userError;
+	
+    	    if (user) {
+        	    const { data, error } = await supabaseClient
+            	    .from('user_answers')
+                	.select('q1')
+           	     	.eq('user_id', user.id)
+            	    .order('id', { descending: true })
+                	.limit(1);
+            	if (error) throw error;
+            	console.log('Refreshed data:', data);
+            	if (data.length == 1) {
+            	    document.getElementById("q1Display").value = data[0].q1 || '...';
+            	} else {
+           	     document.getElementById("q1Display").value = 'No answer found';
+           	 }
+        	} else {
+            	document.getElementById("q1Display").value = 'Please log in to see your answer';
+        	}
+    	} catch (error) {
+        	if (error.status == 406) {
+        	    document.getElementById("q1Display").value = 'Server error: resource not acceptable. Please try again later';
+        	} else if (error.message.includes('JSON object requested, multiple (or no) rows returned')) {
+            	document.getElementById("q1Display").value = 'No answer found';
+        	} else {
+            	console.error('Error fetching data:', error);
+            	document.getElementById("q1Display").value = 'Error fetching data';
+        	}
+    	}
+	});
     </script>
 </body>
 </html>
