@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body setup */
+body {
+    font-family: 'Just Another Hand', Arial, sans-serif; /* Istok Web as the primary font */
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    text-align: left; /* Align the heading to the left */
+}
+
+
+/* Header section with positioning for logo and login button */
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 20px 0;
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the left logo image */
+.logo-image {
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+    height: 60px;
+    width: auto;
+}
+
+.profile-button-image {
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+    height: 60px;
+    width: auto;
+}
+
+.profile-button-image:hover {
+    opacity: 0.8; /* Optional: adds a hover effect */
+}
+
+
+
+/* Styling for the header image */
+.title-name-image {
+    width: 667px; /* Fixed width */
+    height: 215px; /* Fixed height */
+    object-fit: contain; /* Ensures the image maintains its aspect ratio without distortion */
+    display: block; /* Removes extra space below the image */
+    margin-top: 180px; /* Ensures it fits snugly at the top of the header */
+    margin-left: auto; /* Centers the image horizontally */
+    margin-right: auto; /* Centers the image horizontally */
+}
+
+/* Styling for the right login button image */
+.login-button-image {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    height: 60px;
+    width: auto;
+}
+
+.add-answer-image {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px;
+    width: auto;
+}
+
+.add-answer-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px;
+    width: auto;
+}
+
+.reply-button {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px;
+    width: auto;
+}
+
+.reply-button img {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px;
+    width: auto;
+}
+
+.reply-button:hover img {
+    opacity: 0.8; /* Optional: adds a hover effect */
+}
+
+
+
+/* Container for the summary section */
+.summary-section-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Styling for the summary section image */
+.summary-section {
+    width: 100%;
+    max-width: calc(100% - 88px);
+    height: auto;
+}
+
+.dice-picture-container {
+	width: 100%;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.dice-section {
+    width: 100%;
+    max-width: calc(100% - 88px);
+    height: auto;
+}
+
+
+/* Container for the questions section */
+.questions-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Form inside the questions section */
+.questions form {
+    width: 100%;
+    max-width: 2000px;
+    background-color: black;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px #4C8757;
+}
+
+/* Individual question styling */
+.question {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Styling for the question image (text images above each textarea) */
+.question-image {
+    width: auto;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+/* Styling for textareas where users input answers */
+textarea {
+    width: 100%; /* Make it take up the full width of the parent container */
+    padding: 20px;
+    font-size: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    resize: vertical;
+    background-color: #222;
+    color: white;
+    min-height: 160px;
+    max-width: 1000px; /* Add a max-width to ensure it doesn't stretch too much */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    box-shadow: 0 2px 15px #B28761;
+}
+
+.email{
+	    font-weight: bold;
+	    font-size: 1em;
+	    
+}
+
+.password{
+	    font-weight: bold;
+}
+
+.answer-section {
+    width: 100%;
+    max-width: 1000px; /* Ensure the answer section aligns with the text box */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* This centers the text horizontally */
+    font-size: 14px;
+    margin-bottom: 20px; 
+}
+
+/* Container and styling for the submit button */
+.login-button-container {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    height: 60px;
+    width: auto;
+}
+
+
+/* Hover effect for the submit button */
+.login-button-image:hover {
+    opacity: 0.8;
+}
+
+/* Container and styling for the submit button */
+.submit-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.submit-button {
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+.submit-button:hover {
+    opacity: 0.8;
+}
+
+/* Styling for the container of the question buttons */
+.questions-button-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack the buttons vertically in a column */
+    justify-content: space-between; /* Distribute buttons with space between */
+    padding: 10px; /* Add 37px padding from the edges of the page */
+    box-sizing: border-box; /* Include padding in the container’s total width/height */
+}
+
+/* Styling for individual buttons (which are image elements) */
+.question-button {
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to indicate clickable button */
+    margin: 15px 0; /* Add margin between buttons for spacing */
+}
+
+/* Styling for images inside the buttons */
+.question-button img {
+    width: 100%; /* Make the image width 100% of its container */
+    height: auto; /* Maintain the aspect ratio of images */
+    transition: transform 0.3s ease; /* Add smooth transition effect for hover */
+}
+
+/* Hover effect for images inside the buttons */
+.question-button img:hover {
+    /*transform: scale(1.05); Scale image slightly when hovered */
+    opacity: 0.8;
+}
+
+/* Media query for tablets and smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Adjust header layout for smaller screens */
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    /* Adjust images in header (logo and button) for smaller screens */
+    .left-image, .center-image, .right-image {
+        position: relative;
+        margin: 10px 0;
+        height: 50px;
+    }
+
+    /* Display summary section normally on mobile */
+    .summary-section-container {
+        display: block;
+    }
+
+    /* Adjust the form width and padding for mobile */
+    .questions form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Adjust question image height for smaller screens */
+    .question-image {
+        height: 25px;
+    }
+
+    /* Reduce textarea height for better fit on mobile */
+    textarea {
+        min-height: 120px;
+    }
+
+    /* Adjust the submit button size */
+    .submit-button {
+        height: 40px;
+    }
+}
+
+/* Media query for extra small screens (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Further adjust images in the header for small screens */
+    .left-image, .center-image, .right-image {
+        height: 40px;
+    }
+
+    /* Ensure summary section takes full width on very small screens */
+    .summary-section {
+        max-width: 100%;
+    }
+
+    /* Adjust form width and padding to fit smaller screens */
+    .questions form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    /* Further reduce textarea height on extra small screens */
+    textarea {
+        min-height: 100px;
+    }
+
+    /* Reduce the submit button size for mobile */
+    .submit-button {
+        height: 35px;
+    }
+}
+
+/* Styles specific to the signup page */
+form {
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+    border-radius: 0px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* Max width to make the form more compact */
+    text-align: left;
+    margin-top: 50px;
+    font-family: 'Istok Web', Arial, sans-serif; 
+    color: rgb(0, 0, 0)
+    
+}
+
+label {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px 0; /* Adds spacing between form elements */
+    background-color: #333;
+    border: 2px solid #444;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: black;
+}
+
+#error-message, #success-message {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#error-message {
+    color: red;
+}
+
+#success-message {
+    color: green;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responses to Answer</title>
+    <link rel="StyleSheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="StyleSheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <header class="header">
+        <!-- Left-aligned logo image -->
+        <img src="think-profile-button-v2.png" alt="think logo" class="logo-image">
+        
+        <!-- Centered title text -->
+        <img src="its-good-to-think-header.png" alt="it's good to think" class="title-name-image">
+        
+        <!-- Right-aligned login button image -->
+        <div class="login-button-container">
+             <img src="login-button.png" alt="login button" id="login-button" class="login-button-image">
+        </div>
+    </header>
+    
+    <div class="summary-section-container">
+        <img src="" alt="" class="summary-section">
+    </div>
+    
+    <div class="answer-section">
+        <h1>who are you?</h1>
+        <textarea id="original-answer" readonly></textarea>
+    </div>
+    <div class="comments-section">
+        <h2>responses</h2>
+        <ul id="comments-list"></ul>
+    </div>
+    <div class="add-comment-section" id="add-comment-section" style="display: none;">
+        <h2>Leave a Response</h2>
+        <textarea id="new-comment-text" placeholder="Write your response here..."></textarea>
+        <button id="submit-comment">Submit</button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const supabaseUrl = 'https://aqpyxfjhlypevabhrdxs.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcHl4ZmpobHlwZXZhYmhyZHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MjgyODIsImV4cCI6MjA1ODAwNDI4Mn0.dXeKewJjtQG6EeQ7y-g7KwKjoK7i1dKrXmb6LnDzm5E';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const answer_id = urlParams.get('answer_id');
+
+        async function fetchOriginalAnswer() {
+            const { data, error } = await supabaseClient
+                .from('user_answers')
+                .select('q1')
+                .eq('id', answer_id)
+                .single();
+            if (error) {
+                console.error('Error fetching original answer:', error);
+                document.getElementById("original-answer").innerText = 'Error fetching answer';
+            } else {
+                document.getElementById("original-answer").innerText = data.q1 || 'No answer found';
+            }
+        }
+
+        async function fetchComments() {
+            const { data, error } = await supabaseClient
+                .from('comments')
+                .select('*')
+                .eq('answer_id', answer_id)
+                .order('created_at', { descending: true });
+            if (error) {
+                console.error('Error fetching comments:', error);
+                document.getElementById("comments-list").innerText = 'Error fetching comments';
+            } else {
+                const commentsList = document.getElementById("comments-list");
+                commentsList.innerHTML = '';
+                data.forEach(comment => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>User ID: ${comment.user_id}</strong><br>${comment.comment_text}<br><small>Posted at: ${new Date(comment.created_at).toLocaleString()}</small>`;
+                    commentsList.appendChild(li);
+                });
+            }
+        }
+
+        async function addComment() {
+            const commentText = document.getElementById("new-comment-text").value;
+            if (!commentText) return;
+
+            const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+            if (userError) {
+                console.error('Error getting user:', userError);
+                alert('Please log in to leave a response.');
+                return;
+            }
+
+            const { error } = await supabaseClient
+                .from('comments')
+                .insert({
+                    user_id: user.id,
+                    answer_id: answer_id,
+                    comment_text: commentText
+                });
+            if (error) {
+                console.error('Error adding comment:', error);
+                alert('Error adding your response. Please try again.');
+            } else {
+                document.getElementById("new-comment-text").value = '';
+                await fetchComments();
+                alert('Response added successfully!');
+            }
+        }
+
+        document.getElementById('submit-comment').addEventListener('click', addComment);
+
+        window.onload = async function() {
+            if (!answer_id) {
+                document.getElementById("original-answer").innerText = 'No answer ID provided';
+                return;
+            }
+            try {
+                const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+                if (userError) {
+                    console.error('Error getting user:', userError);
+                    document.getElementById("add-comment-section").style.display = 'none';
+                } else {
+                    document.getElementById("add-comment-section").style.display = 'block';
+                }
+                await fetchOriginalAnswer();
+                await fetchComments();
+            } catch (error) {
+                console.error('Error on page load:', error);
+                document.getElementById("original-answer").innerText = 'Error loading page';
+            }
+        };
+    </script>
+</body>
+</html>
