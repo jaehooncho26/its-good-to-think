@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("answers", JSON.stringify(answers));
 
         // Provide user feedback
-        alert("Answers saved successfully!");
+        alert("Collect your cloud coins by saving your thoughts on the next page");
 
         // Delay redirect to allow feedback visibility
         setTimeout(function() {

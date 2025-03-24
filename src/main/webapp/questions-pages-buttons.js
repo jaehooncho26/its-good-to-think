@@ -1,10 +1,14 @@
 // Add event listener for q1-button to redirect to q1-page.html
 const loginButton = document.getElementById("login-button");
 loginButton.addEventListener("click", function() {
-	// Delay redirect to allow feedback visibility
 
 window.location.href = "login-page.html";
-});    
+});  
+
+const profileButton = document.getElementById("profile-button");  
+profileButton.addEventListener("click", function() {
+	window.location.href = "profile-page.html";
+});
 
 const q1Button = document.getElementById("q1-button");
 q1Button.addEventListener("click", function() {
