@@ -291,7 +291,7 @@ textarea {
     }
 
     /* Adjust images in header (logo and button) for smaller screens */
-    .left-image, .center-image, .right-image {
+   .logo-image, .title-name-image, .login-button-image  {
         position: relative;
         margin: 10px 0;
         height: 50px;
@@ -327,7 +327,7 @@ textarea {
 /* Media query for extra small screens (max-width: 480px) */
 @media (max-width: 480px) {
     /* Further adjust images in the header for small screens */
-    .left-image, .center-image, .right-image {
+   .logo-image, .title-name-image, .login-button-image  {
         height: 40px;
     }
 
