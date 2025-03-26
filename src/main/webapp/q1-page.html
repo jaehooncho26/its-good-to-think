@@ -39,7 +39,7 @@
         </div>
         <br><br><br>
                 <br>
-        <h2>username: answer</h2>
+        <h2>think_jaehoon's answer</h2>
         <textarea id="q1Display2" readonly></textarea>
 		<a id="reply-button" href="#" class="reply-button">
     		<img src="reply-button.png" alt="Reply Button" />
@@ -91,33 +91,42 @@
         	}
     	}
     	
+    	// Reference to the display element
     	const answerDisplay2Element = document.getElementById("q1Display2");
-    	try {
-    	    const { data, error } = await supabaseClient
-    	        .from('user_answers')
-    	        .select('id, q1')
-    	        .order('id', { descending: true })
-    	        .limit(1);
-    	    if (error) throw error;
-    	    console.log('Fetched data:', data);
-    	    if (data.length == 1) {
-    	        answerDisplay2Element.value = data[0].q1 || '...';
-    	        const answer_id = data[0].id;
-    	        document.getElementById('reply-button').href = `q1-page-responses1.html?answer_id=${answer_id}`;
-    	    } else {
-    	        answerDisplay2Element.value = '...';
-    	    }
-    	} catch (error) {
-    	    if (error.status == 406) {
-    	        answerDisplay2Element.value = 'Server error: resource not acceptable. Please try again later';
-    	    } else if (error.message.includes('JSON object requested, multiple (or no) rows returned')) {
-    	        answerDisplay2Element.value = 'No answer found';
-    	    } else {
-    	        console.error('Error fetching data:', error);
-    	        answerDisplay2Element.value = 'Error fetching data';
+
+    	// Hardcoded user ID from the query
+    	const userId = '0a8f21e5-ada4-470c-9fa4-5af2e29c4c23';
+
+    	// Function to fetch the latest answer for the specific user
+    	async function fetchUserAnswer() {
+    	    try {
+    	        const { data, error } = await supabaseClient
+    	            .from('user_answers')              // Table name
+    	            .select('id, q1')                  // Columns to retrieve
+    	            .eq('user_id', userId)             // Filter by the specific user ID
+    	            .order('id', { descending: true }) // Order by id descending (latest first)
+    	            .limit(1);                         // Limit to the most recent answer
+
+    	        if (error) {
+    	            console.error('Error fetching data:', error);
+    	            answerDisplay2Element.value = 'Error fetching data';
+    	        } else if (data.length === 1) {
+    	            // Display the answer and update the reply button
+    	            answerDisplay2Element.value = data[0].q1 || '...';
+    	            const answerId = data[0].id;
+    	            document.getElementById('reply-button').href = `q1-page-responses1.html?answer_id=${answerId}`;
+    	        } else {
+    	            answerDisplay2Element.value = 'No answer found for this user';
+    	        }
+    	    } catch (error) {
+    	        console.error('Unexpected error:', error);
+    	        answerDisplay2Element.value = 'Unexpected error occurred';
     	    }
     	}
-	};
+
+    	// Execute the function
+    	fetchUserAnswer();
+    }
 
 	document.getElementById('refresh-button').addEventListener('click', async function() {
     	try {

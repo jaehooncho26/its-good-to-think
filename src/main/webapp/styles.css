@@ -6,7 +6,7 @@
 
 /* Body setup */
 body {
-    font-family: 'Just Another Hand', Arial, sans-serif; /* Istok Web as the primary font */
+    font-family: 'Istok Web', Arial, sans-serif; /* Istok Web as the primary font */
     background-color: black;
     color: white;
     display: flex;
@@ -16,8 +16,18 @@ body {
     margin: 0;
 }
 
+h1 {
+	    font-family: 'Istok Web', Arial, sans-serif;
+	
+}
+
 h2 {
     text-align: left; /* Align the heading to the left */
+        font-family: 'Istok Web', Arial, sans-serif;
+}
+
+h3 {
+    font-family: 'Istok Web', Arial, sans-serif;
 }
 
 
@@ -111,6 +121,25 @@ h2 {
 
 .reply-button:hover img {
     opacity: 0.8; /* Optional: adds a hover effect */
+}
+
+/* styles.css */
+.coin-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#result-image {
+    width: 200px;
+    height: auto;
+    display: none;
+    margin: 20px auto;
+}
+
+#toss-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 
@@ -291,11 +320,19 @@ textarea {
     }
 
     /* Adjust images in header (logo and button) for smaller screens */
-    .left-image, .center-image, .right-image {
+    .logo-image, .login-button-image, .login-button-container {
         position: relative;
         margin: 10px 0;
         height: 50px;
     }
+    
+    .title-name-image {
+        position: relative;
+        margin: 10px 0;
+        height: 150px;
+    }
+    
+    
 
     /* Display summary section normally on mobile */
     .summary-section-container {
@@ -327,10 +364,17 @@ textarea {
 /* Media query for extra small screens (max-width: 480px) */
 @media (max-width: 480px) {
     /* Further adjust images in the header for small screens */
-    .left-image, .center-image, .right-image {
+    .logo-image, .login-button-image, .login-button-container {
         height: 40px;
     }
-
+    
+    .title-name-image {
+        position: relative;
+        margin: 10px 0;
+        height: 100px;
+    }
+    
+    
     /* Ensure summary section takes full width on very small screens */
     .summary-section {
         max-width: 100%;

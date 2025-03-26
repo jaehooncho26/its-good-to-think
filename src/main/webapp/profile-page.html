@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <title>It's Good to Think</title>
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Its+Just+Another+Font&display=swap" rel="stylesheet">
     
     <!-- Link to external CSS for styling -->
@@ -25,5 +26,34 @@
              <img src="login-button.png" alt="login button" id="login-button" class="login-button-image">
         </div>
     </header>
+    
+    <div class="summary-section-container">
+        <img src="" alt="" class="summary-section">
+    </div>
+    
+	<div class="coin-container">
+        <h3>username:</h3>
+        <h3>level:</h3>
+        <h3>total XP earned:</h3>
+        <h3>thought coins:</h3>
+		<button id="toss-button">
+    		<img src="flip-button.png" alt="Flip the coin" class="submit-button">
+		</button>
+        <img id="result-image" src="" alt="">
+        <p id="result-text">flip to level up</p>
+    </div>
+    <div class="summary-section-container">
+        <img src="" alt="" class="summary-section">
+        
+    </div>
+    <h3>put amount of XP user would like to risk</h3>
+    <h3>double your XP if you get heads. Lose half of XP if you get tails.</h3>
+   	<button id="toss-button">
+   	<img src="flip-button.png" alt="Flip the coin" class="submit-button">
+	</button>
+    <img id="result-image" src="" alt="">
+    <p id="result-text">flip and risk your coins</p>
+    <script src="profile.js"></script>
+    
 </body>
 </html>
