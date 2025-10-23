@@ -48,6 +48,31 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Fix for "It's Good to Think" logo */
+.header-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Independent logo styling */
+  .think-logo {
+    width: auto;
+    height: auto;
+    max-width: 320px;     /* adjust this as needed */
+    object-fit: contain;  /* prevent distortion */
+  }
+  
+  /* Optional: keep centered on smaller screens */
+  @media (max-width: 768px) {
+    .think-logo {
+      max-width: 220px;
+    }
+  }
+
 /* Styling for the left logo image */
 .logo-image {
     position: absolute;
@@ -133,7 +158,7 @@ h2 {
 .summary-section-container {
     width: 100%;
     text-align: center;
-    margin-top: 16vh; /* push it slightly below the background title */
+    margin-top: 30px; /* push it slightly below the background title */
     display: flex;
     justify-content: center;
   }
@@ -470,3 +495,7 @@ button:hover {
 #success-message {
     color: green;
 }
+
+  
+  
+  
