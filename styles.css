@@ -109,33 +109,42 @@ h2 {
     }
   }
 
-/* MOBILE LAYOUT: stack Discord & Login buttons under the logo */
+/* === MOBILE FIX: stack buttons UNDER the logo === */
 @media (max-width: 768px) {
+    .header-logo {
+      display: flex;
+      flex-direction: column;  /* stack logo and buttons vertically */
+      align-items: center;     /* center everything horizontally */
+      justify-content: center;
+      text-align: center;
+    }
+  
     .mobile-button-container {
       display: flex;
-      flex-direction: column;  /* stack vertically */
-      align-items: center;     /* center horizontally */
+      flex-direction: column;  /* stack buttons vertically */
+      align-items: center;
       margin-top: 15px;
-      gap: 10px;               /* vertical spacing between buttons */
+      gap: 10px;
     }
   
     .discord-button,
     .login-button2 {
-      position: static;
-      width: 100%;             /* make responsive */
-      max-width: 120px;        /* smaller button size */
+      position: static;        /* remove fixed positioning */
+      width: 100%;
+      max-width: 120px;        /* control size on tablets/small screens */
       height: auto;
-      margin: 0 auto;          /* center each image */
+      margin: 0 auto;
     }
   }
   
-  /* EXTRA SMALL SCREENS (like small phones) */
+  /* Smaller phones (optional) */
   @media (max-width: 480px) {
     .discord-button,
     .login-button2 {
-      max-width: 100px;        /* even smaller on tiny screens */
+      max-width: 100px;        /* make smaller for tiny screens */
     }
   }
+  
   
   
   
