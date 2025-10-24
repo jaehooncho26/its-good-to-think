@@ -111,25 +111,32 @@ h2 {
 
 /* MOBILE LAYOUT: stack Discord & Login buttons under the logo */
 @media (max-width: 768px) {
-    /* Container below the logo */
     .mobile-button-container {
       display: flex;
       flex-direction: column;  /* stack vertically */
       align-items: center;     /* center horizontally */
       margin-top: 15px;
-      gap: 12px;               /* space between buttons */
+      gap: 10px;               /* vertical spacing between buttons */
     }
   
-    /* Override fixed positioning so they flow naturally */
     .discord-button,
     .login-button2 {
       position: static;
-      width: auto;
-      max-width: 150px;
+      width: 100%;             /* make responsive */
+      max-width: 120px;        /* smaller button size */
       height: auto;
       margin: 0 auto;          /* center each image */
     }
   }
+  
+  /* EXTRA SMALL SCREENS (like small phones) */
+  @media (max-width: 480px) {
+    .discord-button,
+    .login-button2 {
+      max-width: 100px;        /* even smaller on tiny screens */
+    }
+  }
+  
   
   
 
