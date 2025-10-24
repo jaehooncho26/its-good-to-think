@@ -64,14 +64,74 @@ h2 {
     height: auto;
     max-width: 320px;     /* adjust this as needed */
     object-fit: contain;  /* prevent distortion */
+    
+  }
+
+  .discord-button {
+    position: fixed;     /* keeps it in place even when scrolling */
+    top: 0;              /* align with top edge */
+    left: 0;             /* align with left edge */
+    margin: 20px;        /* add spacing so it’s not glued to the corner */
+    width: auto;
+    max-width: 150px;    /* control size */
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
   }
   
+  .discord-button:hover {
+    opacity: 0.8;
+  }
+  
+
+  .login-button2 {
+    position: fixed;     /* keeps it in place even when scrolling */
+    top: 0;              /* align with top edge */
+    right: 0;             /* align with left edge */
+    margin: 20px;        /* add spacing so it’s not glued to the corner */
+    width: auto;
+    max-width: 150px;    /* control size */
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .login-button2:hover {
+    opacity: 0.8;
+  }
+
   /* Optional: keep centered on smaller screens */
   @media (max-width: 768px) {
     .think-logo {
       max-width: 220px;
     }
   }
+
+/* MOBILE LAYOUT: stack Discord & Login buttons under the logo */
+@media (max-width: 768px) {
+    /* Container below the logo */
+    .mobile-button-container {
+      display: flex;
+      flex-direction: column;  /* stack vertically */
+      align-items: center;     /* center horizontally */
+      margin-top: 15px;
+      gap: 12px;               /* space between buttons */
+    }
+  
+    /* Override fixed positioning so they flow naturally */
+    .discord-button,
+    .login-button2 {
+      position: static;
+      width: auto;
+      max-width: 150px;
+      height: auto;
+      margin: 0 auto;          /* center each image */
+    }
+  }
+  
+  
 
 /* Styling for the left logo image */
 .logo-image {
