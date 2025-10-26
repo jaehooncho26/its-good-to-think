@@ -238,7 +238,6 @@ h2 {
     width: 100%;
     text-align: center;
     margin-top: 30px; /* push it slightly below the background title */
-    margin-left: 70px;
     display: flex;
     justify-content: center;
   }
@@ -256,6 +255,7 @@ h2 {
         max-width: 600px;  /* prevents it from getting too big on large screens */
         height: auto;
         object-fit: contain;
+        margin-left: 70px;
       }
       
   
