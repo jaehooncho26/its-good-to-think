@@ -1,12 +1,11 @@
 // Use DOMContentLoaded for faster execution
 document.addEventListener("DOMContentLoaded", function() {
-    // const loginButton = document.getElementById("login-button");
-	//loginButton.addEventListener("click", function() {
+    const loginButton = document.getElementById("loginButton");
+	loginButton.addEventListener("click", function() {
 		// Delay redirect to allow feedback visibility
 
-	//window.location.href = "login-page.html";
-	//});
-	
+	window.location.href = "login-page.html";
+	});
 	
 	// Get the submit button
     const submitButton = document.getElementById("submitButton");

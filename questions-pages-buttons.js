@@ -1,11 +1,6 @@
 // Add event listener for q1-button to redirect to q1-page.html
-const loginButton = document.getElementById("login-button");
-loginButton.addEventListener("click", function() {
 
-window.location.href = "login-page.html";
-});  
-
-const profileButton = document.getElementById("profile-button");  
+const profileButton = document.getElementById("profileButton");  
 profileButton.addEventListener("click", function() {
 	window.location.href = "profile-page.html";
 });
