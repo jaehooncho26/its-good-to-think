@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>it's good to think | level up</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet" />
+
+  <!-- Supabase + app -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js" defer></script>
+  <script src="level-up.js" defer></script>
+
+  <style>
+    .spin-button.disabled { pointer-events: none; opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header-logo">
+    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo" />
+    <div class="mobile-button-container">
+      <img src="profile-button.png" alt="profile button" id="profileButton" class="discord-button" />
+      <img src="my-thoughts-button.png" alt="my thoughts button" id="thoughtsButton" class="login-button2" />
+    </div>
+  </div>
+
+  <br /><br /><br />
+  <h1 id="thinkName">username: Loading…</h1>
+  <br />
+
+<!-- Player card -->
+<div class="think-card">
+    <img src="card.png" id="cardBg" class="think-bg" alt="background" />
+    <div class="think-text">
+      <br /><br />
+      <p id="thinkLevel">LEVEL …</p>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <p id="thinkStats">TOTAL XP: … &nbsp; | &nbsp; … THOUGHT COINS</p>
+    </div>
+  </div>
+  
+
+  <!-- Progress (black gradient handled in CSS) -->
+  <p id="progressLabel" aria-live="polite">Progress: …</p>
+  <div class="level-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="XP progress to next level">
+    <div class="progress-outer">
+      <!-- optional milestone ticks -->
+      <div class="tick" style="left:25%"></div>
+      <div class="tick" style="left:50%"></div>
+      <div class="tick" style="left:75%"></div>
+      <div class="progress-inner" id="progressInner"></div>
+    </div>
+  </div>
+
+  <!-- Wheel -->
+  <div class="spinner-container">
+    <div class="wheel" id="wheel">
+      <div class="slice">75XP</div>
+      <div class="slice">250XP</div>
+      <div class="slice">50XP</div>
+      <div class="slice">100XP</div>
+      <div class="slice">25XP</div>
+      <div class="slice">500XP</div>
+    </div>
+    <div class="pointer"></div>
+  </div>
+
+  <!-- Spin button -->
+  <div class="spin-button-container">
+    <img src="spin-button.png" alt="Spin Button" id="spinButton" class="spin-button" />
+  </div>
+
+  <!-- Level tiers image -->
+  <div class="summary-section-container">
+    <img src="leveling.png" alt="describes the tiers according to level" class="level-tier-section" />
+  </div>
+
+  <!-- (Optional) SFX files; if present, JS will play them -->
+  <audio id="sfxSpin"  src="spin.mp3"    preload="auto"></audio>
+  <audio id="sfxLevel" src="levelup.mp3" preload="auto"></audio>
+
+  <!-- Nice-to-haves the JS can auto-create, but we include for performance -->
+  <div id="levelUpOverlay" class="lu-overlay" hidden>
+    <div class="lu-card">
+      <div class="lu-title">LEVEL UP!</div>
+      <div class="lu-level" id="luLevel">2</div>
+    </div>
+  </div>
+  <canvas id="confetti" class="confetti" width="0" height="0"></canvas>
+  <div id="xpToast" class="xp-toast" aria-live="polite"></div>
+
+</body>
+</html>

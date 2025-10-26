@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>It's Good to Think | Profile</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js" defer></script>
+  <script src="profile-page.js" defer></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Its+Just+Another+Font&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header-logo">
+    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo" />
+
+    <div class="mobile-button-container">
+      <img src="questions-button.png" alt="Questions" id="questionsButton" class="discord-button" />
+      <img src="my-thoughts-button.png" alt="My Thoughts" id="thoughtsButton" class="login-button2" />
+    </div>
+  </div>
+
+  <br /><br /><br />
+  <h1 id="thinkName">username: Loading…</h1>
+  <h2 id="questionsCount">questions answered: …</h2>
+  <br />
+
+  <!-- Profile card -->
+  <div class="think-card">
+    <img src="card.png" class="think-bg" alt="background" />
+    <div class="think-text">
+      <br /><br />
+      <p id="thinkLevel">LEVEL …</p>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <p id="thinkStats">TOTAL XP: … &nbsp; | &nbsp; … THOUGHT COINS</p>
+    </div>
+  </div>
+
+  <br /><br />
+  <div class="mobile-button-container">
+    <img src="level-up-button.png" alt="Level Up" id="levelButton" class="submit-button" />
+  </div>
+</body>
+</html>

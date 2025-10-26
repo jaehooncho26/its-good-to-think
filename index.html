@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Supabase (keep if your JS relies on it) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <title>It's Good to Think</title>
+
+  <!-- Font & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Its+Just+Another+Font&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="header-logo">
+        <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
+      
+        <div class="mobile-button-container">
+          <img src="discord-button.png" alt="Join Discord" id="discordButtom" class="discord-button">
+          <img src="login-button.png" alt="Login" id="loginButton" class="login-button2">
+        </div>
+      </div>
+      
+      
+      
+    <div class="summary-section-container">
+        <img src="summary-section.png" alt="Summary Section" class="summary-section">
+    </div>
+    
+  <!-- Only the Questions/Form remain -->
+  <div class="questions-container">
+    <div class="questions">
+      <form id="questions">
+        <!-- Q1 -->
+        <div class="question">
+          <img src="who-are-you-text.png" alt="Who Are You" class="question-image" />
+          <textarea id="q1" name="who" rows="4" placeholder="Your answer..."></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-button-container">
+          <img src="think-button.png" alt="Submit" id="submitButton" class="submit-button" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Keep your JS if it handles form submission/buttons -->
+  <script src="index-page-buttons.js"></script>
+</body>
+</html>
