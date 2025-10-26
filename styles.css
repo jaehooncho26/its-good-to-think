@@ -408,55 +408,101 @@ textarea {
     opacity: 0.8;
 }
 
-/* Styling for the container of the question buttons */
+/* --- Questions page: banner buttons --- */
 .questions-button-container {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack the buttons vertically in a column */
-    justify-content: space-between; /* Distribute buttons with space between */
-    padding: 30px; /* Add 37px padding from the edges of the page */
-    box-sizing: border-box; /* Include padding in the container’s total width/height */
-}
-
-.question-button {
-    position: relative;           /* enables overlay text positioning */
-    background-color: transparent; /* remove background */
-    border: none;                  /* remove border */
-    outline: none;                 /* remove outline */
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* center the stack */
+    gap: 14px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  .question-button {
+    position: relative;
+    display: block;
+    width: min(560px, 92vw); /* desktop max width, responsive down */
+    aspect-ratio: 16 / 4;    /* keeps a consistent banner height */
     margin: 15px 0;
-    padding: 0;                    /* remove any extra spacing */
-}
-
-.question-button:hover,
-.question-button:focus,
-.question-button:active {
-    background-color: transparent; /* no hover background */
-    outline: none;                 /* no focus outline */
-    box-shadow: none;              /* no glow */
-}
-
-.question-button img {
-    display: block;                /* removes inline gap below image */
-    width: 100%;
-    height: auto;
-    border: none;
-}
-
-.button-text {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+  
+  .question-button:hover,
+  .question-button:focus,
+  .question-button:active {
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .question-button img {
     position: absolute;
-    top: 50%;                      /* center vertically */
-    left: 50%;                     /* center horizontally */
-    transform: translate(-50%, -50%);
-    color: black;                  /* text color */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* use 'cover' if you want full fill */
+    display: block;
+    border: 0;
+    pointer-events: none; /* clicks go to the button */
+    transition: filter .2s ease, opacity .2s ease;
+  }
+  
+  /* Text overlay */
+  .button-text {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transform: none;       /* no translate needed with grid centering */
+    color: #fff;           /* reads well on colored banners */
     font-family: 'Jua', sans-serif;
-    font-size: 1.5em;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.6); /* readability */
-    pointer-events: none;          /* allows button to be clickable */
-}
-
-.question-button:hover img {
-    opacity: 0.8;                  /* subtle hover feedback */
-}
+    font-size: clamp(12px, 4.2vw, 28px); /* fluid size: mobile→desktop */
+    line-height: 1.05;
+    text-align: center;
+    padding: 0 8%;
+    text-shadow:
+      0 1px 2px rgba(0,0,0,.55),
+      0 0 1px rgba(0,0,0,.35);
+    pointer-events: none;
+  }
+  
+  .question-button:hover img { opacity: .9; }
+  
+  /* --- Tablet tweaks --- */
+  @media (max-width: 768px) {
+    .questions-button-container {
+      gap: 12px;
+      padding: 12px;
+    }
+    .question-button {
+      width: min(520px, 94vw);
+      aspect-ratio: 16 / 4.2;  /* slightly taller for more text room */
+    }
+    .button-text {
+      padding: 0 10%;
+      font-size: clamp(12px, 4.8vw, 22px);
+    }
+  }
+  
+  /* --- Small phones --- */
+  @media (max-width: 480px) {
+    .question-button {
+      width: 96vw;
+      aspect-ratio: 16 / 4.6;  /* a bit taller to reduce wrapping */
+    }
+    .button-text {
+      padding: 0 12%;
+      font-size: clamp(11px, 5.2vw, 18px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+    }
+  }
+  
 
 
 /* Media query for tablets and smaller screens (max-width: 768px) */
@@ -785,7 +831,7 @@ button:hover {
     border-radius: 20px;
     }
     .think-text {
-    font-family: 'Caveat Brush', cursive;
+    font-family: 'Caveat Brush', sans-serif;
     position: absolute;
     top: 0;
     left: 0;
@@ -796,8 +842,8 @@ button:hover {
     align-items: center;
     justify-content: center;
     }
-    .think-text h2 {font-family: 'Jua', cursive; font-size: 2em; margin: 0; }
-    .think-text p {font-family: 'Jua', cursive; font-size: .7em; margin: 4px 0; font-weight: bold; }
+    .think-text h2 {font-family: 'Jua', sans-serif; font-size: 2em; margin: 0; }
+    .think-text p {font-family: 'Jua', sans-serif; font-size: .7em; margin: 4px 0; font-weight: bold; }
   
     .level-progress {
         width: min(520px, 90vw);
@@ -848,4 +894,4 @@ button:hover {
 .progress-outer{position:relative;}
 .progress-outer .tick{position:absolute;top:-6px;width:2px;height:26px;background:rgba(255,255,255,.18);}
 
-      
+

@@ -1,4 +1,4 @@
-/* level-up.js — dynamic weights, pointer calibration, juicy level-up UX, atomic XP+level update */
+/* level-up.js — dynamic weights, pointer calibration, juicy level-up UX, atomic XP+level update + smooth card cross-fade */
 (() => {
     'use strict';
   
@@ -8,7 +8,7 @@
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcHl4ZmpobHlwZXZhYmhyZHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MjgyODIsImV4cCI6MjA1ODAwNDI4Mn0.dXeKewJjtQG6EeQ7y-g7KwKjoK7i1dKrXmb6LnDzm5E';
     const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   
-    // --- DOM refs (existing elements) ---
+    // --- DOM refs ---
     const wheel       = document.getElementById('wheel');
     const spinButton  = document.getElementById('spinButton');
     const nameEl      = document.getElementById('thinkName');
@@ -19,36 +19,31 @@
     const progressWrap= document.querySelector('.level-progress');
   
     // ====== WHEEL & ECONOMY CONFIG ======
-    // Visible slice order in HTML: 50, 250, 75, 500, 25, 100
-    const rewards = [ 50, 250, 75, 500, 25, 100 ];
+    // Visible slice order in HTML: 75, 250, 50, 100, 25, 500
+    const rewards = [ 75, 250, 50, 100, 25, 500 ];
   
-    // Base "fun" weights (sum ≈ 1)
-    const baseWeights = [0.12, 0.22, 0.18, 0.06, 0.07, 0.35];
-    // Dynamic tuning
+    const baseWeights = [0.18, 0.22, 0.12, 0.35, 0.07, 0.06];
     const PITY_STREAK_MIN   = 4;
     const PITY_BONUS_250    = 0.08;
     const PITY_BONUS_500    = 0.03;
     const HOT_COOLDOWN_SPINS= 3;
     const HOT_500_DAMP      = 0.4;
     const ANTI_REPEAT_FACTOR= 0.75;
-    const isLowPrize = (xp) => xp <= 75;
-
     const SHOW_SPIN_HISTORY = false;
-
   
-    // ====== CALIBRATION (pointer vs wedges) ======
+    // ====== CALIBRATION ======
     const savedCal = JSON.parse(localStorage.getItem('wheel_calibration') || '{}');
-    let ANGLE_OFFSET = Number.isFinite(savedCal.ANGLE_OFFSET) ? savedCal.ANGLE_OFFSET : 0; // degrees
-    const BASES = [-90, 0, 90, 180];                             // top/right/bottom/left
-    let BASE_INDEX = Number.isInteger(savedCal.BASE_INDEX) ? savedCal.BASE_INDEX : 0; // 0 = top
-    let SPIN_SIGN  = (savedCal.SPIN_SIGN === -1) ? -1 : 1;       // 1 = CW, -1 = CCW
+    let ANGLE_OFFSET = Number.isFinite(savedCal.ANGLE_OFFSET) ? savedCal.ANGLE_OFFSET : 0;
+    const BASES = [-90, 0, 90, 180]; // top/right/bottom/left
+    let BASE_INDEX = Number.isInteger(savedCal.BASE_INDEX) ? savedCal.BASE_INDEX : 0;
+    let SPIN_SIGN  = (savedCal.SPIN_SIGN === -1) ? -1 : 1;
   
     function persistCalibration() {
       localStorage.setItem('wheel_calibration', JSON.stringify({ ANGLE_OFFSET, BASE_INDEX, SPIN_SIGN }));
       updateCenters(); updateBadge();
     }
   
-    const WEDGE_DEG = 60; // 6 slices
+    const WEDGE_DEG = 60;
     let sectorCenters = [];
     function updateCenters() {
       const BASE_DEG = BASES[BASE_INDEX];
@@ -60,45 +55,38 @@
   
     // ====== DYNAMIC STATE (persisted) ======
     const savedDyn = JSON.parse(localStorage.getItem('wheel_dyn_state') || '{}');
-    let coldStreak    = Number.isInteger(savedDyn.coldStreak) ? savedDyn.coldStreak : 0; // consecutive lows
-    let hotCooldown   = Number.isInteger(savedDyn.hotCooldown) ? savedDyn.hotCooldown : 0; // spins left
+    let coldStreak    = Number.isInteger(savedDyn.coldStreak) ? savedDyn.coldStreak : 0;
+    let hotCooldown   = Number.isInteger(savedDyn.hotCooldown) ? savedDyn.hotCooldown : 0;
     let lastPrizeIdx  = Number.isInteger(savedDyn.lastPrizeIdx) ? savedDyn.lastPrizeIdx : -1;
     function persistDyn() {
       localStorage.setItem('wheel_dyn_state', JSON.stringify({ coldStreak, hotCooldown, lastPrizeIdx }));
     }
   
-    // Build dynamic weights for this spin
     function getDynamicWeights() {
       let w = baseWeights.slice();
-      if (coldStreak >= PITY_STREAK_MIN) { w[1] += PITY_BONUS_250; w[3] += PITY_BONUS_500; } // 250/500
-      if (hotCooldown > 0) { w[3] *= HOT_500_DAMP; } // damp 500 after a hot win
+      if (coldStreak >= PITY_STREAK_MIN) { w[1] += PITY_BONUS_250; w[5] += PITY_BONUS_500; } // 250, 500
+      if (hotCooldown > 0) { w[5] *= HOT_500_DAMP; } // damp 500 after a hot win
       if (lastPrizeIdx >= 0 && lastPrizeIdx < w.length) { w[lastPrizeIdx] *= ANTI_REPEAT_FACTOR; }
       const sum = w.reduce((a,b)=>a+b,0) || 1;
       return w.map(v => v / sum);
     }
   
-    // Weighted picker
     function pickIndexWeighted(w) {
-      const sum = w.reduce((a, b) => a + b, 0) || 1;
+      const sum = w.reduce((a,b)=>a+b,0) || 1;
       const r = Math.random() * sum;
       let acc = 0;
-      for (let i = 0; i < w.length; i++) { acc += w[i]; if (r <= acc) return i; }
+      for (let i=0;i<w.length;i++){ acc += w[i]; if (r <= acc) return i; }
       return w.length - 1;
     }
   
-    // ====== JUICY UI (auto-create if missing) ======
+    // ====== JUICY UI HELPERS ======
     function ensureNode(id, tag, className, parent=document.body) {
       let el = document.getElementById(id);
-      if (!el) {
-        el = document.createElement(tag);
-        el.id = id;
-        if (className) el.className = className;
-        parent.appendChild(el);
-      }
+      if (!el) { el = document.createElement(tag); el.id = id; if (className) el.className = className; parent.appendChild(el); }
       return el;
     }
   
-    // --- Card art by level ---
+    // --- Card art by level + smooth cross-fade ---
     function getCardSrcForLevel(level) {
       if (level >= 41) return 'card-luminary.png';
       if (level >= 31) return 'card-catalyst.png';
@@ -106,16 +94,45 @@
       if (level >= 11) return 'card-seeker.png';
       return 'card.png';
     }
-    // Preload to avoid flash when swapping
     (function preloadCardArt(){
-      ['card.png','card-seeker.png','card-muse.png','card-catalyst.png','card-luminary.png']
+      ['card-blank.png','card.png','card-seeker.png','card-muse.png','card-catalyst.png','card-luminary.png']
         .forEach(src => { const i = new Image(); i.src = src; });
     })();
     function updateCardArt(level) {
-      const img = document.getElementById('cardBg') || document.querySelector('.think-bg');
-      if (!img) return;
-      const nextSrc = getCardSrcForLevel(Number(level || 1));
-      if (img.getAttribute('src') !== nextSrc) img.setAttribute('src', nextSrc);
+      const cardImg = document.getElementById('cardBg') || document.querySelector('.think-bg');
+      if (!cardImg) return;
+  
+      const next = getCardSrcForLevel(Number(level || 1));
+      const current = cardImg.getAttribute('src');
+      if (current === next) return;
+  
+      const wrapper = cardImg.parentElement;
+      if (!wrapper) return;
+      if (getComputedStyle(wrapper).position === 'static') wrapper.style.position = 'relative';
+  
+      const overlay = new Image();
+      overlay.src = next;
+      overlay.className = 'think-bg';
+      overlay.alt = '';
+      overlay.style.position = 'absolute';
+      overlay.style.inset = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.objectFit = getComputedStyle(cardImg).objectFit || 'contain';
+      overlay.style.borderRadius = getComputedStyle(cardImg).borderRadius || '0';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 320ms ease';
+  
+      overlay.onload = () => {
+        wrapper.appendChild(overlay);
+        requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+        setTimeout(() => {
+          cardImg.setAttribute('src', next);
+          overlay.remove();
+        }, 340);
+      };
+      if (overlay.complete) overlay.onload();
     }
   
     // Level-up overlay
@@ -145,7 +162,6 @@
       }
       return overlay;
     }
-  
     function showLevelUp(newLevel){
       const overlay = ensureLevelUpOverlay();
       const lbl = document.getElementById('luLevel');
@@ -196,7 +212,6 @@
       });
     }
   
-    // Progress bar pulse
     function pulseProgressBar(){
       if(!progressEl) return;
       progressEl.style.animation = 'pbPulse .6s ease';
@@ -208,39 +223,17 @@
       setTimeout(()=>{ progressEl.style.animation = ''; }, 650);
     }
   
-    // Spin history
-    function ensureHistory() {
-        if (!SHOW_SPIN_HISTORY) return null;  // <— prevents creation
-        let ul = document.getElementById('spinHistory');
-        if (!ul) {
-          ul = document.createElement('ul');
-          ul.id = 'spinHistory';
-          ul.style.cssText = 'list-style:none;margin:12px auto 0;padding:0;max-width:520px;color:#fff;opacity:.9;';
-          wheel?.parentElement?.appendChild(ul);
-        }
-        return ul;
-      }
-      
-      function pushSpinHistory(xp, leveled) {
-        if (!SHOW_SPIN_HISTORY) return;       // <— prevents logging
-        const ul = ensureHistory(); if (!ul) return;
-        const li = document.createElement('li');
-        li.style.cssText='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.12);font-size:.95em;';
-        const t  = new Date().toLocaleTimeString();
-        li.innerHTML = `<span>${t}</span><span>${xp} XP${leveled ? ' ⚡' : ''}</span>`;
-        ul.prepend(li);
-        while (ul.children.length > 5) ul.lastChild.remove();
-      }
-      
+    // Spin history (disabled)
+    function ensureHistory(){ return null; }
+    function pushSpinHistory(){ /* no-op */ }
   
-    // SFX (optional)
     function playSfx(id){
       const el = document.getElementById(id);
       if (!el) return;
       try { el.currentTime = 0; el.play(); } catch {}
     }
   
-    // ---------- Auth / username helpers ----------
+    // ---------- Auth / username ----------
     async function getAuthUser() {
       const { data: s } = await sb.auth.getSession();
       if (s?.session?.user) return s.session.user;
@@ -301,7 +294,6 @@
       return { ok: !!row, row, error: null };
     }
   
-    // Optional: award coins on actions (requires SQL function `award_coins`)
     async function awardCoins(username, amount) {
       const { data, error } = await sb.rpc('award_coins', { p_username: username, p_amount: amount });
       if (error) { console.warn('[level-up] award_coins error:', error); return null; }
@@ -333,7 +325,7 @@
         if (levelEl) levelEl.textContent = 'LEVEL 0';
         if (statsEl) statsEl.textContent = 'TOTAL XP: 0  |  0 THOUGHT COINS';
         renderProgress(0, 0, null);
-        updateCardArt(1); // default art
+        updateCardArt(1); // keep blank until first load, then show default
         return;
       }
       const username = row.username ?? 'Unknown';
@@ -344,7 +336,7 @@
       if (levelEl) levelEl.textContent = `LEVEL ${level}`;
       if (statsEl) statsEl.textContent = `TOTAL XP: ${xp}  |  ${coins} THOUGHT COINS`;
       renderProgress(xp, level, row);
-      updateCardArt(level); // <-- swap card art by tier
+      updateCardArt(level); // cross-fade to the right card art
     }
   
     // ---------- Spin animation & locking ----------
@@ -387,7 +379,6 @@
         const coins = Number(current.thoughtcoins ?? 0);
         if (coins < 1) { alert('You need at least 1 Thought Coin to spin.'); return; }
   
-        // Build weights and pick outcome
         const dynWeights = getDynamicWeights();
         const idx       = pickIndexWeighted(dynWeights);
         const centerDeg = sectorCenters[idx];
@@ -403,7 +394,7 @@
           return;
         }
   
-        // Update dynamic-state, but still no UI reveal
+        // Update dynamic-state
         if (rewards[idx] === 500) hotCooldown = HOT_COOLDOWN_SPINS; else if (hotCooldown > 0) hotCooldown -= 1;
         if ((rewards[idx] ?? 0) <= 75) coldStreak += 1; else coldStreak = 0;
         lastPrizeIdx = idx;
@@ -415,7 +406,7 @@
         // AFTER animation: reveal everything
         const newLvl = Number(res.row.level ?? prevLvl);
         showXpToast(xpReward);
-        renderUser(res.row);   // updates labels, progress, AND card art
+        renderUser(res.row);
         pulseProgressBar();
   
         if (newLvl > prevLvl) {
@@ -443,7 +434,7 @@
   
       const username = deriveUsernameFromAuth(authUser);
       const row = await ensureUser(username);
-      renderUser(row); // will set initial card art based on level
+      renderUser(row); // will cross-fade card art from blank to proper tier
   
       spinButton.addEventListener('click', () => onSpinClicked(username));
   
@@ -455,7 +446,6 @@
       }
     });
   
-    // (Optional) If you show a calibration badge somewhere:
     function updateBadge(){ /* noop in this build */ }
   
   })();
