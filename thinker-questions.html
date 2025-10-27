@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>it's good to think | questions</title>
+
+  <!-- Reuse your site styles + fonts -->
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Its+Just+Another+Font&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header (identical to questions-page.html) -->
+  <div class="header-logo">
+    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
+    <div class="mobile-button-container">
+      <img src="discord-button.png" alt="Join Discord" id="discordButtom" class="discord-button">
+      <img src="profile-button.png" alt="profile button" id="profileButton" class="login-button2">
+    </div>
+  </div>
+
+  <div class="summary-section-container">
+    <img src="" alt="" class="summary-section">
+  </div>
+
+  <div class="questions-button-container" id="revealedQuestions">
+    <div class="question-button question-revealed" aria-live="polite">
+      <picture>
+        <source media="(max-width: 768px)" srcset="red-banner-button-mobile.png">
+        <img src="red-banner-button.png" alt="Revealed Question">
+      </picture>
+      <span class="button-text">Question 1: Who are you?</span>
+    </div>
+  </div>
+  
+
+  <!-- Wheel (same structure/classes as level-up-page.html) -->
+  <div class="spinner-container" style="margin-top:12px;">
+    <div class="wheel" id="wheel">
+      <div class="slice">Question 2</div>
+      <div class="slice">Question 3</div>
+      <div class="slice">Question 4</div>
+      <div class="slice">Question 5</div>
+      <div class="slice">Question 6</div>
+      <div class="slice">Question 7</div>
+    </div>
+    <div class="pointer"></div>
+  </div>
+
+  <!-- Spin button -->
+  <div class="spin-button-container">
+    <img src="spin-button.png" alt="Spin Button" id="spinButton" class="spin-button" />
+  </div>
+  <script src="thinker-questions.js"></script>
+
+ 
+</body>
+</html>

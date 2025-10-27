@@ -882,3 +882,11 @@ button:hover {
 .progress-outer{position:relative;}
 .progress-outer .tick{position:absolute;top:-6px;width:2px;height:26px;background:rgba(255,255,255,.18);}
 
+/* Revealed questions look like buttons but aren't clickable */
+.question-revealed {
+    cursor: default;
+  }
+  .question-revealed:hover img {
+    opacity: 1; /* cancel the hover dim */
+  }
+  

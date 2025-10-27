@@ -7,7 +7,7 @@ profileButton.addEventListener("click", function() {
 
 const q1Button = document.getElementById("q1-button");
 q1Button.addEventListener("click", function() {
-    window.location.href = "q1-page.html";
+    window.location.href = "thinker-questions.html";
 });
 
 const q2Button = document.getElementById("q2-button");
