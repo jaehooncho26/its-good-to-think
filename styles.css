@@ -1,892 +1,790 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
-    min-height: 100vh;
-    overflow-y: auto;               /* ensure vertical scrolling */
-    margin: 0;
-    padding: 0;
+  min-height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Jua', sans-serif;
+  background-image: url('background.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-color: #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2 { text-align: left; }
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 20px 0;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.think-logo {
+  width: auto;
+  height: auto;
+  max-width: 320px;
+  object-fit: contain;
+}
+
+.discord-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  width: auto;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.discord-button:hover { opacity: 0.8; }
+
+.login-button2 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  width: auto;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.login-button2:hover { opacity: 0.8; }
+
+@media (max-width: 768px) { .think-logo { max-width: 220px; } }
+
+@media (max-width: 768px) {
+  .header-logo {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
-  
-  body {
-    font-family: 'Jua', sans-serif;
-  
-    /* your background */
-    background-image: url('background.png');
-    background-repeat: no-repeat;
-    background-position: top center;   /* anchor the top so letters stay visible */
-    background-size: cover;            /* fill the screen completely */
-    background-color: #000;            /* fallback color for loading */
-  
-    color: white;
+  .mobile-button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    margin-top: 15px;
+    gap: 10px;
   }
-  
-
-
-
-h2 {
-    text-align: left; /* Align the heading to the left */
-}
-
-
-/* Header section with positioning for logo and login button */
-.header {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .discord-button, .login-button2 {
+    position: static;
     width: 100%;
-    height: 100px;
-    padding: 20px 0;
-    background-color: black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Fix for "It's Good to Think" logo */
-.header-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
+    max-width: 120px;
+    margin: 0 auto;
   }
-  
-  /* Independent logo styling */
-  .think-logo {
-    width: auto;
-    height: auto;
-    max-width: 320px;     /* adjust this as needed */
-    object-fit: contain;  /* prevent distortion */
-    
-  }
-
-  .discord-button {
-    position: fixed;     /* keeps it in place even when scrolling */
-    top: 0;              /* align with top edge */
-    left: 0;             /* align with left edge */
-    margin: 20px;        /* add spacing so it’s not glued to the corner */
-    width: auto;
-    max-width: 150px;    /* control size */
-    height: auto;
-    object-fit: contain;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-  
-  .discord-button:hover {
-    opacity: 0.8;
-  }
-  
-
-  .login-button2 {
-    position: fixed;     /* keeps it in place even when scrolling */
-    top: 0;              /* align with top edge */
-    right: 0;             /* align with left edge */
-    margin: 20px;        /* add spacing so it’s not glued to the corner */
-    width: auto;
-    max-width: 150px;    /* control size */
-    height: auto;
-    object-fit: contain;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-  
-  .login-button2:hover {
-    opacity: 0.8;
-  }
-
-  /* Optional: keep centered on smaller screens */
-  @media (max-width: 768px) {
-    .think-logo {
-      max-width: 220px;
-    }
-  }
-
-/* === MOBILE FIX: stack buttons UNDER the logo === */
-@media (max-width: 768px) {
-    .header-logo {
-      display: flex;
-      flex-direction: column;  /* stack logo and buttons vertically */
-      align-items: center;     /* center everything horizontally */
-      justify-content: center;
-      text-align: center;
-    }
-  
-    .mobile-button-container {
-      display: flex;
-      flex-direction: column;  /* stack buttons vertically */
-      align-items: center;
-      margin-top: 15px;
-      gap: 10px;
-    }
-  
-    .discord-button,
-    .login-button2 {
-      position: static;        /* remove fixed positioning */
-      width: 100%;
-      max-width: 120px;        /* control size on tablets/small screens */
-      height: auto;
-      margin: 0 auto;
-    }
-  }
-  
-  /* Smaller phones (optional) */
-  @media (max-width: 480px) {
-    .discord-button,
-    .login-button2 {
-      max-width: 100px;        /* make smaller for tiny screens */
-    }
-  }
-
-  
-  
-  
-  
-  
-
-/* Styling for the left logo image */
-.logo-image {
-    position: absolute;
-    left: 0;
-    margin-left: 20px;
-    height: 60px;
-    width: auto;
+}
+@media (max-width: 480px) {
+  .discord-button, .login-button2 { max-width: 100px; }
 }
 
-.profile-button-image {
-    position: absolute;
-    left: 0;
-    margin-left: 20px;
-    height: 60px;
-    width: auto;
-}
-
-.profile-button-image:hover {
-    opacity: 0.8; /* Optional: adds a hover effect */
-}
-
-
-
-/* Styling for the header image */
-.title-name-image {
-    width: 667px; /* Fixed width */
-    height: 215px; /* Fixed height */
-    object-fit: contain; /* Ensures the image maintains its aspect ratio without distortion */
-    display: block; /* Removes extra space below the image */
-    margin-top: 180px; /* Ensures it fits snugly at the top of the header */
-    margin-left: auto; /* Centers the image horizontally */
-    margin-right: auto; /* Centers the image horizontally */
-}
-
-/* Styling for the right login button image */
-.login-button-image {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    height: 60px;
-    width: auto;
-}
-
-.add-answer-image {
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60px;
-    width: auto;
-}
-
-.add-answer-container {
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60px;
-    width: auto;
-}
-
-.reply-button {
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60px;
-    width: auto;
-}
-
-.reply-button img {
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60px;
-    width: auto;
-}
-
-.reply-button:hover img {
-    opacity: 0.8; /* Optional: adds a hover effect */
-}
-
-
-
-/* Container for the summary section */
 .summary-section-container {
-    width: 100%;
-    text-align: center;
-    margin-top: 30px; /* push it slightly below the background title */
-    display: flex;
-    justify-content: center;
-  }
-  
-  /* Make the summary letters smaller than the background title */
-  .summary-section {
-    width: 50%;        /* controls size — try 25–35% for smaller/larger */
-    max-width: 600px;  /* prevents it from getting too big on large screens */
-    height: auto;
-    object-fit: contain;
-  }
-    /* Make the summary letters smaller than the background title */
-    .level-tier-section {
-        width: 100%;        /* controls size — try 25–35% for smaller/larger */
-        max-width: 600px;  /* prevents it from getting too big on large screens */
-        height: auto;
-        object-fit: contain;
-        margin-left: 50px;
-      }
-      
-  
-  /* Responsive scaling for tablets and mobile */
-  @media (max-width: 1024px) {
-    .summary-section {
-      width: 40%;
-    }
-    .level-tier-section {
-        width: 70%;
-        margin-right: 65px;
-      }
-  }
-  
-  @media (max-width: 768px) {
-    .summary-section {
-      width: 55%;
-    }
-    .level-tier-section {
-        width: 70%;
-        margin-right: 65px;
-      }
-  }
-  
-  @media (max-width: 480px) {
-    .summary-section {
-      width: 70%;
-    }
-    .level-tier-section {
-        width: 60%;
-        margin-right: 65px;
-      }
-  }
-  
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.summary-section {
+  width: 50%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+}
+.level-tier-section {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  margin-left: 50px;
+}
+
+@media (max-width: 1024px) {
+  .summary-section { width: 40%; }
+  .level-tier-section { width: 70%; margin-right: 65px; }
+}
+@media (max-width: 768px) {
+  .summary-section { width: 55%; }
+  .level-tier-section { width: 70%; margin-right: 65px; }
+}
+@media (max-width: 480px) {
+  .summary-section { width: 70%; }
+  .level-tier-section { width: 60%; margin-right: 65px; }
+}
 
 .dice-picture-container {
-	width: 100%;
-    text-align: center;
-    margin-top: 0px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
 }
+.dice-section { width: 100%; max-width: calc(100% - 88px); height: auto; }
 
-.dice-section {
-    width: 100%;
-    max-width: calc(100% - 88px);
-    height: auto;
-}
-
-
-/* Container for the questions section */
 .questions-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: transparent; /* was black */
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Remove the black card background & drop shadow around the form wrapper */
 .questions form {
-    width: 100%;
-    max-width: 2000px;
-    background-color: transparent; /* was black */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: none; /* remove green glow */
+  width: 100%;
+  max-width: 2000px;
+  background-color: transparent;
+  padding: 40px;
 }
 form {
-    background-color: transparent !important; /* was white */
-    box-shadow: none !important;
-    width: 100%;
-    max-width: 1000px;       /* optional: keep it narrower */
-    text-align: left;
-    margin-top: 50px;
-    color: white;            /* keep text readable on bg */
+  background-color: transparent !important;
+  box-shadow: none !important;
+  width: 100%;
+  max-width: 1000px;
+  text-align: left;
+  margin-top: 50px;
+  color: white;
 }
 
-/* Individual question styling */
-.question {
-    margin-bottom: 30px;
-    text-align: center;
-}
+.question { margin-bottom: 30px; text-align: center; }
+.question-image { height: 30px; margin-bottom: 10px; }
 
-/* Styling for the question image (text images above each textarea) */
-.question-image {
-    width: auto;
-    height: 30px;
-    margin-bottom: 10px;
-}
-
-/* Styling for textareas where users input answers */
 textarea {
-    width: 100%; /* Make it take up the full width of the parent container */
-    padding: 20px;
-    font-size: 10px;
-    border: 2px solid black;
-    border-radius: 10px;
-    resize: vertical;
-    background-color: #222;
-    color: white;
-    min-height: 160px;
-    max-width: 1000px; /* Add a max-width to ensure it doesn't stretch too much */
-    box-sizing: border-box; /* Ensure padding is included in the width calculation */
-    box-shadow: 0 2px 15px #B28761;
-}
-
-.email{
-	    font-weight: bold;
-	    font-size: 1em;
-	    
-}
-
-.password{
-	    font-weight: bold;
+  width: 100%;
+  padding: 20px;
+  font-size: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  resize: vertical;
+  background-color: #222;
+  color: white;
+  min-height: 160px;
+  max-width: 1000px;
+  box-shadow: 0 2px 15px #B28761;
 }
 
 .answer-section {
-    width: 100%;
-    max-width: 1000px; /* Ensure the answer section aligns with the text box */
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center; /* This centers the text horizontally */
-    font-size: 14px;
-    margin-bottom: 20px; 
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
 }
 
-/* Container and styling for the submit button */
-.login-button-container {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    height: 60px;
-    width: auto;
-}
-
-
-/* Hover effect for the submit button */
-.login-button-image:hover {
-    opacity: 0.8;
-}
-
-/* Container and styling for the submit button */
 .submit-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
-
 .submit-button {
-    width: auto;
-    height: 50px;
-    cursor: pointer;
+  width: auto;
+  height: 50px;
+  cursor: pointer;
 }
+.submit-button:hover { opacity: 0.8; }
 
-/* Hover effect for the submit button */
-.submit-button:hover {
-    opacity: 0.8;
-}
-
-/* Styling for the container of the question buttons */
 .questions-button-container {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack the buttons vertically in a column */
-    justify-content: space-between; /* Distribute buttons with space between */
-    padding: 30px; /* Add 37px padding from the edges of the page */
-    box-sizing: border-box; /* Include padding in the container’s total width/height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
 }
 
 .question-button {
-    position: relative;           /* enables overlay text positioning */
-    background-color: transparent; /* remove background */
-    border: none;                  /* remove border */
-    outline: none;                 /* remove outline */
-    cursor: pointer;
-    margin: 15px 0;
-    padding: 0;                    /* remove any extra spacing */
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 15px 0;
+  padding: 0;
 }
-
-.question-button:hover,
-.question-button:focus,
-.question-button:active {
-    background-color: transparent; /* no hover background */
-    outline: none;                 /* no focus outline */
-    box-shadow: none;              /* no glow */
-}
-
-.question-button img {
-    display: block;                /* removes inline gap below image */
-    width: 100%;
-    height: auto;
-    border: none;
-}
+.question-button img { display: block; width: 100%; height: auto; }
+.question-button:hover img { opacity: 0.8; }
 
 .button-text {
-    position: absolute;
-    top: 50%;                      /* center vertically */
-    left: 50%;                     /* center horizontally */
-    transform: translate(-50%, -50%);
-    color: black;                  /* text color */
-    font-family: 'Jua', sans-serif;
-    font-size: 1.5em;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.6); /* readability */
-    pointer-events: none;          /* allows button to be clickable */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-family: 'Jua', sans-serif;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  pointer-events: none;
 }
 
-.question-button:hover img {
-    opacity: 0.8;                  /* subtle hover feedback */
-}
-
-
-/* Media query for tablets and smaller screens (max-width: 768px) */
 @media (max-width: 768px) {
-    /* Adjust header layout for smaller screens */
-    .header {
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
-    }
-
-    /* Adjust images in header (logo and button) for smaller screens */
-    .logo-image, .login-button-image, .login-button-container {
-        position: relative;
-        margin: 10px 0;
-        height: 50px;
-    }
-	
-    .title-name-image {
-        position: relative;
-        margin: 10px 0;
-        height: 150px;
-    }
-
-    /* Display summary section normally on mobile */
-    .summary-section-container {
-        display: block;
-    }
-
-    /* Adjust the form width and padding for mobile */
-    .questions form {
-        width: 90%;
-        padding: 15px;
-    }
-
-    /* Adjust question image height for smaller screens */
-    .question-image {
-        height: 25px;
-    }
-
-    /* Reduce textarea height for better fit on mobile */
-    textarea {
-        min-height: 120px;
-    }
-
-    /* Adjust the submit button size */
-    .submit-button {
-        height: 40px;
-    }
-    .questions-button-container {
-        gap: 12px;
-        padding: 12px;
-      }
-      .question-button {
-        width: min(520px, 94vw);
-        aspect-ratio: 16 / 4.2;  /* slightly taller for more text room */
-      }
-      .button-text {
-        padding: 0 10%;
-        font-size: clamp(12px, 4.8vw, 22px);
-      }
+  .questions form { width: 90%; padding: 15px; }
+  textarea { min-height: 120px; }
+  .submit-button { height: 40px; }
+  .questions-button-container { gap: 12px; padding: 12px; }
+  .question-button { width: min(520px, 94vw); aspect-ratio: 16 / 4.2; }
+  .button-text { padding: 0 10%; font-size: clamp(12px, 4.8vw, 22px); }
 }
-
-/* Media query for extra small screens (max-width: 480px) */
 @media (max-width: 480px) {
-    /* Further adjust images in the header for small screens */
-    .logo-image, .login-button-image, .login-button-container {
-        height: 40px;
-    }
-
-    .title-name-image {
-        position: relative;
-        margin: 10px 0;
-        height: 100px;
-    }
-    
-    /* Ensure summary section takes full width on very small screens */
-    .summary-section {
-        max-width: 100%;
-    }
-
-    /* Adjust form width and padding to fit smaller screens */
-    .questions form {
-        width: 95%;
-        padding: 10px;
-    }
-
-    /* Further reduce textarea height on extra small screens */
-    textarea {
-        min-height: 100px;
-    }
-
-    /* Reduce the submit button size for mobile */
-    .submit-button {
-        height: 35px;
-    }
-    .question-button {
-        width: 96vw;
-        aspect-ratio: 16 / 4.6;  /* a bit taller to reduce wrapping */
-      }
-      .button-text {
-        padding: 0 12%;
-        font-size: clamp(11px, 5.2vw, 18px);
-        line-height: 1.1;
-        letter-spacing: .2px;
-      }
-}
-
-/* Styles specific to the signup page */
-form {
-    background-color: rgb(255, 255, 255);
-    padding: 50px;
-    border-radius: 0px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px; /* Max width to make the form more compact */
-    text-align: left;
-    margin-top: 50px;
-    font-family: 'Istok Web', Arial, sans-serif; 
-    color: rgb(255, 255, 255)
-    
-}
-
-label {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-    display: block;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 20px 0; /* Adds spacing between form elements */
-    background-color: #333;
-    border: 2px solid #444;
-    color: white;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-button {
-    padding: 12px 20px;
-    background-color: black;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: black;
-}
-
-#error-message, #success-message {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-#error-message {
-    color: red;
-}
-
-#success-message {
-    color: green;
-}
-
-
-/* === SPINNER WHEEL — polished look with gradients === */
-:root{
-    --wheel-size: 320px;   /* change to 360/400 if you want it bigger */
-    --rim: 6px;
+  .questions form { width: 95%; padding: 10px; }
+  textarea { min-height: 100px; }
+  .submit-button { height: 35px; }
+  .question-button { width: 96vw; aspect-ratio: 16 / 4.6; }
+  .button-text {
+    padding: 0 12%;
+    font-size: clamp(11px, 5.2vw, 18px);
+    line-height: 1.1;
+    letter-spacing: .2px;
   }
-  
-  .spinner-container {
-    position: relative;
-    width: var(--wheel-size);
-    height: var(--wheel-size);
-    margin-top: 60px;
-  }
-  
-  .wheel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-  
-    /* no border; we’ll draw the edge with ::before using the slice colors */
-    border: 0;
-  
-    /* gloss + vignette + the main slices */
-    background:
-      radial-gradient(120% 90% at 50% 20%, rgba(255,255,255,.25), rgba(255,255,255,0) 55%),
-      radial-gradient(140% 120% at 50% 115%, rgba(0,0,0,.45), rgba(0,0,0,0) 55%),
-      conic-gradient(
-        from -90deg,
-        #865632 0deg 58deg,   #6f482c 58deg 60deg,
-        #146D1A 60deg 118deg, #0f5a16 118deg 120deg,
-        #2289B6 120deg 178deg,#1c7397 178deg 180deg,
-        #BD1F22 180deg 238deg,#9e1a1d 238deg 240deg,
-        #000000 240deg 298deg,#1a1a1a 298deg 300deg,
-        #CF9144 300deg 358deg,#b27b3a 358deg 360deg
-      );
-  
-    /* nice depth, but no “white rim” */
-    box-shadow:
-      0 10px 24px rgba(0,0,0,.35),
-      inset 0 6px 16px rgba(0,0,0,.35),
-      inset 0 0 2px rgba(255,255,255,.25);
-  
-    transform: rotate(0deg);
-    transition: transform 4s cubic-bezier(0.25, 1, 0.3, 1);
-  }
-  
-  
-/* Colored outer edge that matches the wedge colors */
-.wheel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-  
-    /* same slice map as the wheel so the edge color matches perfectly */
-    background: conic-gradient(
+}
+
+:root { --wheel-size: 320px; --rim: 6px; }
+
+.spinner-container {
+  position: relative;
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+  margin-top: 60px;
+}
+
+.wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 20%, rgba(255,255,255,.25), rgba(255,255,255,0) 55%),
+    radial-gradient(140% 120% at 50% 115%, rgba(0,0,0,.45), rgba(0,0,0,0) 55%),
+    conic-gradient(
       from -90deg,
-      #865632 0deg 58deg,   #6f482c 58deg 60deg,
+      #865632 0deg 58deg, #6f482c 58deg 60deg,
       #146D1A 60deg 118deg, #0f5a16 118deg 120deg,
-      #2289B6 120deg 178deg,#1c7397 178deg 180deg,
-      #BD1F22 180deg 238deg,#9e1a1d 238deg 240deg,
-      #000000 240deg 298deg,#1a1a1a 298deg 300deg,
-      #CF9144 300deg 358deg,#b27b3a 358deg 360deg
+      #2289B6 120deg 178deg, #1c7397 178deg 180deg,
+      #BD1F22 180deg 238deg, #9e1a1d 238deg 240deg,
+      #000000 240deg 298deg, #1a1a1a 298deg 300deg,
+      #CF9144 300deg 358deg, #b27b3a 358deg 360deg
     );
-  
-    /* show only a thin ring at the outer edge */
-    --rim: 8px; /* thickness of the colored edge; tweak 6–12px */
-    -webkit-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - var(--rim) - 1px),
-      rgba(0,0,0,1) calc(100% - var(--rim))
-    );
-            mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - var(--rim) - 1px),
-      rgba(0,0,0,1) calc(100% - var(--rim))
-    );
-    pointer-events: none;
-  }
-  
-  
-  /* Center hub */
-  .wheel::after{
-    content: "";
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 18%;
-    height: 18%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 40% 35%, rgba(255,255,255,.45), rgba(255,255,255,0) 55%),
-      radial-gradient(circle at 60% 80%, rgba(0,0,0,.35), rgba(0,0,0,0) 55%),
-      #1b1b1b;
-    box-shadow:
-      inset 0 2px 8px rgba(255,255,255,.25),
-      0 4px 12px rgba(0,0,0,.35);
-    border: 2px solid rgba(255,255,255,.6);
-  }
-  
-  /* Numbers: centered on each wedge, facing outward with the slice */
-  .slice {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    font: 500 1.2rem 'Jua', sans-serif;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,.45);
-    transform-origin: 0 0;
-    pointer-events: none;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  /* For a wheel ~320px, 100–110px is around mid-radius; tweak if you up --wheel-size */
-  .slice:nth-child(1){ transform: rotate(-60deg) translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  .slice:nth-child(2){ transform: rotate(0deg)   translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  .slice:nth-child(3){ transform: rotate(60deg)  translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  .slice:nth-child(4){ transform: rotate(120deg) translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  .slice:nth-child(5){ transform: rotate(180deg) translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  .slice:nth-child(6){ transform: rotate(240deg) translateY(calc(-1 * (var(--wheel-size) * 0.31))) translate(-50%, -50%); }
-  
-  /* Pointer (at top) */
-  .pointer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0; height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 26px solid #fff;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,.4));
-    transform: translate(-50%, -165%);
-  }
-  
-/* === IMAGE SPIN BUTTON === */
-.spin-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;      /* adjust distance below the wheel */
-  }
-  
-  .spin-button {
-    width: 180px;          /* size of your spin button image */
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.3s ease;
-  }
-  
-  .spin-button:hover {
-    transform: scale(1.05);
-    opacity: 0.85;
-  }
-  
-  .spin-button:active {
-    transform: scale(0.98);
-  }
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 6px 16px rgba(0,0,0,.35), inset 0 0 2px rgba(255,255,255,.25);
+  transform: rotate(0deg);
+  transition: transform 4s cubic-bezier(0.25, 1, 0.3, 1);
+}
 
-  .spin-button.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
+.wheel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    #865632 0deg 58deg, #6f482c 58deg 60deg,
+    #146D1A 60deg 118deg, #0f5a16 118deg 120deg,
+    #2289B6 120deg 178deg, #1c7397 178deg 180deg,
+    #BD1F22 180deg 238deg, #9e1a1d 238deg 240deg,
+    #000000 240deg 298deg, #1a1a1a 298deg 300deg,
+    #CF9144 300deg 358deg, #b27b3a 358deg 360deg
+  );
+  --rim: 8px;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--rim) - 1px), rgba(0,0,0,1) calc(100% - var(--rim)));
+  mask: radial-gradient(farthest-side, transparent calc(100% - var(--rim) - 1px), rgba(0,0,0,1) calc(100% - var(--rim)));
+  pointer-events: none;
+}
 
-  .think-card {
-    position: relative;
-    display: inline-block;
-    width: 350px;
-    height: 337px;
-    font-family: 'Caveat', sans-serif;
-    color: white;
-    }
-    .think-bg {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    }
-    .think-text {
-    font-family: 'Caveat Brush', sans-serif;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    }
-    .think-text h2 {font-family: 'Jua', sans-serif; font-size: 2em; margin: 0; }
-    .think-text p {font-family: 'Jua', sans-serif; font-size: .7em; margin: 4px 0; font-weight: bold; }
-  
-    .level-progress {
-        width: min(520px, 90vw);
-        margin: 8px auto 0;
-      }
-      
-      .progress-outer {
-        height: 14px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.2);
-        overflow: hidden;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
-      }
-      
-      .progress-inner {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #000, #222, #000);
-        box-shadow: inset 0 1px 3px rgba(255,255,255,0.2),
-                    inset 0 -1px 3px rgba(0,0,0,0.6);
-        transition: width 0.6s ease;
-      }
-      
-      #progressLabel {
-        margin-top: 8px;
-        font-size: 0.95em;
-        opacity: 0.9;
-      }
-      
+.wheel::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18%;
+  height: 18%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 35%, rgba(255,255,255,.45), rgba(255,255,255,0) 55%),
+    radial-gradient(circle at 60% 80%, rgba(0,0,0,.35), rgba(0,0,0,0) 55%),
+    #1b1b1b;
+  box-shadow: inset 0 2px 8px rgba(255,255,255,.25), 0 4px 12px rgba(0,0,0,.35);
+  border: 2px solid rgba(255,255,255,.6);
+}
 
+.slice {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font: 500 1.2rem 'Jua', sans-serif;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,.45);
+  transform-origin: 0 0;
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+}
+.slice:nth-child(1){ transform: rotate(-60deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
+.slice:nth-child(2){ transform: rotate(0deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
+.slice:nth-child(3){ transform: rotate(60deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
+.slice:nth-child(4){ transform: rotate(120deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
+.slice:nth-child(5){ transform: rotate(180deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
+.slice:nth-child(6){ transform: rotate(240deg) translateY(calc(-1*(var(--wheel-size)*0.31))) translate(-50%,-50%); }
 
-      /* ensure hidden truly hides the overlay even if it has display:grid */
+.pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 26px solid #fff;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.4));
+  transform: translate(-50%, -165%);
+}
+
+.spin-button-container { display: flex; justify-content: center; margin-top: 40px; }
+.spin-button {
+  width: 180px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+.spin-button:hover { transform: scale(1.05); opacity: 0.85; }
+.spin-button:active { transform: scale(0.98); }
+
+.question-revealed { cursor: default; }
+.question-revealed:hover img { opacity: 1; }
+
+.tier-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+.tier-alert-box {
+  background: #111;
+  border: 2px solid #B28761;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border-radius: 16px;
+  padding: 30px 40px;
+  text-align: center;
+  color: white;
+  font-family: 'Jua', sans-serif;
+  max-width: 320px;
+  animation: popupIn 0.3s ease;
+}
+@keyframes popupIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.tier-alert-buttons { display: flex; justify-content: center; gap: 18px; }
+.tier-alert-img {
+  height: 35px;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.3s ease;
+}
+.tier-alert-img:hover { opacity: 0.85; transform: scale(1.05); }
+
+#signup-form {
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 40px;
+  text-align: left;
+}
+#signup-form .form-group { margin-bottom: 10px; }
+#signup-form label { margin-bottom: 6px; font-size: 1.05rem; display: block; }
+#signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 12px 0;
+  background-color: #333;
+  border: 2px solid #444;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+#signup-form .image-button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  display: block;
+  margin: 6px auto 0;
+  cursor: pointer;
+}
+#signup-form .image-button:hover,
+#signup-form .image-button:focus,
+#signup-form .image-button:active {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+#signup-form .image-button img {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+.auth-switch {
+  text-align: center;
+  margin-top: 16px;
+}
+.auth-switch p { margin-bottom: 8px; font-size: 1rem; }
+.auth-switch .login-image-button {
+  width: 160px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.auth-switch .login-image-button:hover { transform: scale(1.05); }
+
+/* ===== RESTORED — Profile card ===== */
+.think-card {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  height: 337px;
+  font-family: 'Caveat', sans-serif;
+  color: white;
+}
+.think-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.think-text {
+  font-family: 'Caveat Brush', sans-serif;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.think-text h2 { font-family: 'Jua', sans-serif; font-size: 2em; margin: 0; }
+.think-text p  { font-family: 'Jua', sans-serif; font-size: .7em; margin: 4px 0; font-weight: bold; }
+
+/* ===== RESTORED — Progress bar & label ===== */
+.level-progress {
+  width: min(520px, 90vw);
+  margin: 8px auto 0;
+}
+.progress-outer {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.2);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
+}
+.progress-outer .tick {
+  position: absolute;
+  top: -6px;
+  width: 2px;
+  height: 26px;
+  background: rgba(255,255,255,.18);
+}
+.progress-inner {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #000, #222, #000);
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.2),
+    inset 0 -1px 3px rgba(0,0,0,0.6);
+  transition: width 0.6s ease;
+}
+#progressLabel {
+  margin-top: 8px;
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+
+/* ===== RESTORED — Level-up overlay, confetti, XP toast, spin history ===== */
 .lu-overlay[hidden] { display: none !important; }
+.lu-overlay {
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,.55);
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+.lu-card {
+  padding: 28px 36px;
+  border-radius: 18px;
+  text-align: center; color: #fff;
+  background: linear-gradient(180deg,#111,#000);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
+  animation: lu_pop .4s cubic-bezier(.2,1,.2,1);
+}
+.lu-title {
+  font: 900 24px/1 'Jua', sans-serif;
+  letter-spacing: .02em;
+}
+.lu-level {
+  font: 900 56px/1 'Jua', sans-serif;
+  margin-top: 6px;
+  background: linear-gradient(90deg, #ffd27a, #fff, #ffd27a);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@keyframes lu_pop {
+  0% { transform: scale(.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
+.xp-toast {
+  position: fixed;
+  left: 50%; top: 30%;
+  transform: translate(-50%, -50%);
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #fff; font-weight: 800;
+  background: rgba(0,0,0,.6);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s, transform .4s;
+}
+.spin-history {
+  list-style: none;
+  margin: 12px auto 0; padding: 0;
+  max-width: 520px;
+  color: #fff; opacity: .9;
+}
+.spin-history li {
+  display: flex; justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255,255,255,.12);
+  font-size: .95em;
+}
 
-.lu-overlay{position:fixed;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);z-index:10000;backdrop-filter:blur(2px);}
-.lu-card{padding:28px 36px;border-radius:18px;text-align:center;color:#fff;background:linear-gradient(180deg,#111,#000);
-  box-shadow:0 10px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); animation:lu_pop .4s cubic-bezier(.2,1,.2,1);}
-.lu-title{font:900 24px/1 'Jua',sans-serif;letter-spacing:.02em;}
-.lu-level{font:900 56px/1 'Jua',sans-serif;margin-top:6px;background:linear-gradient(90deg,#ffd27a,#fff,#ffd27a);
-  -webkit-background-clip:text;color:transparent;}
-@keyframes lu_pop{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
-.confetti{position:fixed;inset:0;pointer-events:none;z-index:9999;}
-.xp-toast{position:fixed;left:50%;top:30%;transform:translate(-50%,-50%);padding:10px 14px;border-radius:999px;color:#fff;font-weight:800;
-  background:rgba(0,0,0,.6);z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .4s;}
-.spin-history{list-style:none;margin:12px auto 0;padding:0;max-width:520px;color:#fff;opacity:.9;}
-.spin-history li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.12);font-size:.95em;}
-/* Progress bar ticks if you kept them */
-.progress-outer{position:relative;}
-.progress-outer .tick{position:absolute;top:-6px;width:2px;height:26px;background:rgba(255,255,255,.18);}
+/* ===== RESTORED — Disabled state for spin image button ===== */
+.spin-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-/* Revealed questions look like buttons but aren't clickable */
-.question-revealed {
-    cursor: default;
-  }
-  .question-revealed:hover img {
-    opacity: 1; /* cancel the hover dim */
+/* ===== Q Page UI (restored) ===== */
+
+/* Section widths match your textarea layout */
+.your-answer-section,
+.public-answers-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Title alignment */
+.your-answer-section .section-title,
+.public-answers-section .section-title {
+  text-align: left;
+  margin: 10px 0 8px 0;
+}
+
+/* Read-only card */
+.answer-readonly {
+  white-space: pre-wrap;
+  width: 100%;
+  padding: 20px;
+  font-size: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #222;
+  color: white;
+  min-height: 160px;
+  max-width: 1000px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 15px #B28761;
+}
+
+/* Editor (hidden until Edit) */
+.answer-editor {
+  display: none;
+  width: 100%;
+  padding: 20px;
+  font-size: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  resize: vertical;
+  background-color: #222;
+  color: white;
+  min-height: 160px;
+  max-width: 1000px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 15px #B28761;
+  margin-top: 10px;
+}
+
+/* Buttons row */
+.your-answer-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Image buttons (edit/save/post) */
+.icon-button {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.1s ease-in-out;
+  display: inline-block;
+}
+.icon-button:hover { opacity: 0.8; }
+.icon-button:active { transform: scale(0.98); }
+.icon-link { display: inline-flex; }
+
+/* Status text */
+.status-msg {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* Public feed */
+.public-answers {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 40px 0;
+}
+.public-answer-card {
+  padding: 16px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  box-shadow: 0 2px 15px #B28761;
+  white-space: pre-wrap;
+  font-size: 12px;
+}
+.public-answer-card.empty,
+.public-answer-card.error { opacity: 0.75; font-style: italic; }
+
+.public-answer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.reply-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+.reply-button img {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.reply-button:hover img { opacity: 0.8; }
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .answer-editor { min-height: 120px; }
+  .icon-button   { height: 44px; }
+}
+@media (max-width: 480px) {
+  .answer-editor { min-height: 100px; }
+  .icon-button   { height: 40px; }
+}
+
+/* Question header text (replaces PNG) */
+.question-text {
+  width: 100%;
+  max-width: 1000px;
+  margin: 8px auto 16px;
+  padding: 0 8px;
+  text-align: center;
+  font-family: 'Its Just Another Font', sans-serif;
+  font-size: clamp(20px, 4.2vw, 34px);
+  line-height: 1.15;
+}
+
+/* Make the reply input area wider and consistent with site style */
+#new-comment-text {
+  width: 100%;                 /* Full width of its container */
+  max-width: 800px;            /* Optional: cap width so it doesn’t stretch too far on large screens */
+  min-height: 140px;           /* Taller for more comfortable typing */
+  padding: 10px;               /* Matches your textarea style */
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #222;
+  color: white;
+  font-family: 'Geist Mono', sans-serif;
+  font-size: 1rem;
+  box-shadow: 0 2px 15px #B28761; /* same glow as other textareas */
+  display: block;
+  margin: 0 auto;              /* Center horizontally */
+  box-sizing: border-box;
+}
+
+.add-comment-section {
+  width: 100%;
+  max-width: 500px;          /* Let the section breathe on large screens */
+  margin: 40px auto;          /* Center horizontally with spacing above/below */
+  text-align: center;
+}
+
+/* Reply textarea uses "It's Just Another Font" */
+#new-comment-text,
+textarea.reply-input,
+.add-comment-section textarea {
+  font-family: 'Geist Mono', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  color: white;
+  background-color: #222;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 15px #B28761;
+  resize: vertical;
+}
+
+
+/* ===============================
+   Question Header Text Styling
+   =============================== */
+   #questionHeaderText,
+   .question-text {
+     font-family: 'Jua', sans-serif;
+     font-weight: 400;
+     text-align: center;
+     color: white;
+     margin: 20px auto;
+     padding: 0 10px;
+     max-width: 1000px;
+     line-height: 1.2;
+     font-size: clamp(22px, 4.5vw, 36px);
+     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+   }
+   #new-comment-text::placeholder {
+    font-family: 'Geist Mono', cursive;
+    color: rgba(255,255,255,0.7);
   }
   

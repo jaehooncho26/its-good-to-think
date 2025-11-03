@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responses to Answer</title>
+    <link rel="StyleSheet" href="styles.css">
+
+    <link href="https://fonts.cdnfonts.com/css/geist-mono" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <header class="header-logo">
+        <img src="its-good-to-think.png" alt="It's good to think" class="think-logo">
+      </header>
+    
+    <div class="answer-section">
+        <h1>question to think on: who are you?</h1>
+        <textarea id="original-answer" readonly></textarea>
+    </div>
+    <div class="comments-section">
+        <h2>responses</h2>
+        <ul id="comments-list"></ul>
+    </div>
+    <div class="add-comment-section" id="add-comment-section" style="display: none;">
+        <h2>Leave a Response</h2>
+        <textarea id="new-comment-text" placeholder="Write your response here..."></textarea>
+<!-- Image button for Submit -->
+<div class="reply-button-container">
+    <a id="submit-comment" class="reply-button">
+      <img src="reply-button.png" alt="Submit Reply" class="icon-button">
+    </a>
+  </div>
+  
+    </div>
+    <script src="question-responses.js"></script>
+</body>
+</html>
+
+

@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Second Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Its+Just+Another+Font&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Page</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.cdnfonts.com/css/geist-mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+  <!-- ✅ Supabase (required for tier gating logic) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
-    <div class="header-logo">
-        <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
-      
-        <div class="mobile-button-container">
-          <img src="discord-button.png" alt="Join Discord" id="discordButtom" class="discord-button">
-          <img src="profile-button.png" alt="profile button" id="profileButton" class="login-button2">
-        </div>
-      </div>
+  <div class="header-logo">
+    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
 
-    <div class="summary-section-container">
-        <img src="" alt="" class="summary-section">
+    <div class="mobile-button-container">
+      <img src="discord-button.png" alt="Join Discord" id="discordButtom" class="discord-button">
+      <img src="profile-button.png" alt="profile button" id="profileButton" class="login-button2">
     </div>
-    
+  </div>
 
-    <div class="questions-button-container">
-        <button class="question-button" id="q1-button">
-          <picture>
-            <source media="(max-width: 768px)" srcset="red-banner-button-mobile.png">
-            <img src="red-banner-button.png" alt="Question 1 Button">
-          </picture>
-          <span class="button-text">tier 1: thinker questions</span>
-        </button>
-      
-        <button class="question-button" id="q2-button">
-          <picture>
-            <source media="(max-width: 768px)" srcset="green-banner-button-mobile.png">
-            <img src="green-banner-button.png" alt="Question 2 Button">
-          </picture>
-          <span class="button-text">tier 2: seeker questions</span>
-        </button>
-      
-        <button class="question-button" id="q3-button">
-          <picture>
-            <source media="(max-width: 768px)" srcset="brown-banner-button-mobile.png">
-            <img src="brown-banner-button.png" alt="Question 3 Button">
-          </picture>
-          <span class="button-text">tier 3: muse questions</span>
-        </button>
-      
-        <button class="question-button" id="q4-button">
-          <picture>
-            <source media="(max-width: 768px)" srcset="blue-banner-button-mobile.png">
-            <img src="blue-banner-button.png" alt="Question 4 Button">
-          </picture>
-          <span class="button-text">tier 4: catalyst questions</span>
-        </button>
-      
-        <button class="question-button" id="q5-button">
-          <picture>
-            <source media="(max-width: 768px)" srcset="gray-banner-button-mobile.png">
-            <img src="gray-banner-button.png" alt="Question 5 Button">
-          </picture>
-          <span class="button-text">tier 5: luminary questions</span>
-        </button>
-      </div>
-      
+  <div class="summary-section-container">
+    <img src="" alt="" class="summary-section">
+  </div>
 
-    <!-- Link to the external script.js file -->
-    <script src="questions-pages-buttons.js"></script>
+  <div class="questions-button-container">
+    <button class="question-button" id="q1-button">
+      <picture>
+        <source media="(max-width: 768px)" srcset="red-banner-button-mobile.png">
+        <img src="red-banner-button.png" alt="Question 1 Button">
+      </picture>
+      <span class="button-text">tier 1: thinker questions</span>
+    </button>
+
+    <button class="question-button" id="q2-button">
+      <picture>
+        <source media="(max-width: 768px)" srcset="green-banner-button-mobile.png">
+        <img src="green-banner-button.png" alt="Question 2 Button">
+      </picture>
+      <span class="button-text">tier 2: seeker questions</span>
+    </button>
+
+    <button class="question-button" id="q3-button">
+      <picture>
+        <source media="(max-width: 768px)" srcset="brown-banner-button-mobile.png">
+        <img src="brown-banner-button.png" alt="Question 3 Button">
+      </picture>
+      <span class="button-text">tier 3: muse questions</span>
+    </button>
+
+    <button class="question-button" id="q4-button">
+      <picture>
+        <source media="(max-width: 768px)" srcset="blue-banner-button-mobile.png">
+        <img src="blue-banner-button.png" alt="Question 4 Button">
+      </picture>
+      <span class="button-text">tier 4: catalyst questions</span>
+    </button>
+
+    <button class="question-button" id="q5-button">
+      <picture>
+        <source media="(max-width: 768px)" srcset="gray-banner-button-mobile.png">
+        <img src="gray-banner-button.png" alt="Question 5 Button">
+      </picture>
+      <span class="button-text">tier 5: luminary questions</span>
+    </button>
+  </div>
+
+  <!-- Your gating logic (must come AFTER Supabase script) -->
+  <script src="questions-pages-buttons.js"></script>
 </body>
 </html>

@@ -4,61 +4,83 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question 1 Page</title>
 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <title>It's Good to Think</title>
+
+  <!-- Font & Styles -->
+  <link href="https://fonts.cdnfonts.com/css/geist-mono" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
-
-  <!-- Load Supabase, then your page JS. Defer so they run after HTML is parsed. -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js" defer></script>
-  <script src="q1-page.js" defer></script>
 </head>
 <body>
-  <div class="header-logo">
-    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo" />
+	<div class="header-logo">
+		<img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
+	  
+		<div class="mobile-button-container">
+		  <!-- LEFT: profile -->
+		  <img src="profile-button.png" alt="Profile" id="profileButton" class="discord-button">
+	  
+		  <!-- RIGHT: questions -->
+		  <img src="questions-button.png" alt="Questions" id="questionsButton" class="login-button2">
+		</div>
+	  </div>
+	  
+<br> <br>
+  <div class="questions-container">
+    <div class="questions">
 
-    <div class="mobile-button-container">
-      <img src="profile-button.png" alt="profile button" id="profileButton" class="discord-button" />
-      <img src="questions-button.png" alt="questions button" id="questionsButton" class="login-button2" />
+<!-- Replace the whole "Q1 Header Image" block with this -->
+<div class="question">
+	<h1 id="questionHeaderText" class="question-text"></h1>
+  </div>
+  
+
+      <!-- YOUR ANSWER (read-only display + controlled editor) -->
+      <section id="your-answer-section" class="your-answer-section">
+        <h2 class="section-title">Your answer</h2>
+
+        <!-- Read-only display of the saved answer -->
+        <div id="q1DisplayReadOnly" class="answer-readonly"></div>
+
+        <!-- Editor: hidden until "Edit" is pressed -->
+        <textarea id="q1Editor" class="answer-editor" rows="5" placeholder="Write your answer..."></textarea>
+
+        <!-- Buttons row -->
+        <div class="your-answer-controls">
+          <!-- Left: EDIT -->
+          <img src="edit-button.png" id="editBtn" alt="Edit" class="icon-button" title="Edit" />
+
+          <!-- Middle: SAVE (turns into reply-button.png after posting) -->
+          <a id="saveOrReplyLink" class="icon-link">
+            <img src="save-button.png" id="saveBtn" alt="Save" class="icon-button" title="Save" />
+          </a>
+
+          <!-- Right: POST -->
+          <img src="post-button.png" id="postBtn" alt="Post" class="icon-button" title="Post" />
+        </div>
+
+        <!-- Status text -->
+        <div id="status-msg" class="status-msg"></div>
+      </section>
+
+      <!-- WRITE YOUR ANSWER (only visible while editing, so we keep page clean) -->
+      <!-- (Empty placeholder kept for layout consistency) -->
+
+      <!-- PUBLIC FEED -->
+      <section id="public-answers-section" class="public-answers-section">
+        <h2 class="section-title">Answers from others</h2>
+        <div id="publicAnswers" class="public-answers"></div>
+      </section>
+
     </div>
   </div>
 
-  <div class="answer-section">
-    <h1>question to think on: who are you?</h1>
-    <br />
-
-    <h2>think Jaehoon and think Angie's answer</h2>
-    <textarea id="q1Display2" readonly></textarea>
-    <a id="reply-button" href="#" class="reply-button">
-      <img src="reply-button.png" alt="Reply Button" />
-    </a>
-
-    <h2>your answer</h2>
-
-    <!-- Make this EDITABLE (removed readonly) so the user can type -->
-    <textarea
-      id="q1Display"
-      placeholder="Type your answer here, then click save."
-      aria-label="Your answer"
-    ></textarea>
-
-    <div class="add-answer-container">
-      <img
-        src="save-button.png"
-        alt="Save your answer"
-        id="add-answer-button"
-        class="add-answer-image"
-        role="button"
-        tabindex="0"
-        aria-label="Save your answer"
-      />
-    </div>
-
-    <!-- Optional status text the JS can use -->
-    <div id="status-msg" aria-live="polite"></div>
-
-    <br /><br /><br /><br />
-  </div>
+  <!-- Page scripts -->
+  <script src="q1-page.js"></script>
 </body>
 </html>
+

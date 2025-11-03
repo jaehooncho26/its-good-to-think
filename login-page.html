@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>log in</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <div class="header-logo">
-        <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
-      </div>
-    
-    <!-- Section that displays the summary image -->
-    <div class="summary-section-container">
-        <img src="" alt="" class="summary-section">
+  <!-- Header -->
+  <div class="header-logo">
+    <img src="its-good-to-think.png" alt="It's Good to Think" class="think-logo">
+  </div>
+
+  <!-- Summary strip (kept for consistency) -->
+  <div class="summary-section-container">
+    <img src="" alt="" class="summary-section">
+  </div>
+
+  <div class="container" style="text-align:center;">
+    <h1>log in</h1>
+
+    <!-- Wrapper uses #signup-form styles to match sign-up page -->
+    <div id="signup-form">
+      <form id="login-form" aria-label="Log In Form">
+        <div class="form-group">
+          <label for="email">email:</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">password:</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+
+        <!-- Image-based submit (no hover background, matches sign-up) -->
+        <button type="submit" class="image-button" aria-label="Log in">
+          <img src="login-button.png" alt="log in">
+        </button>
+      </form>
     </div>
-    
-    <div>
-        <h1>log in</h1>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">email:</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">password:</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit">log in</button>
-        </form>
-        <p id="error-message" style="color: red;"></p>
-        <p id="success-message" style="color: green;"></p>
+
+    <!-- Messages -->
+    <p id="error-message" class="message" style="color: red;"></p>
+    <p id="success-message" class="message" style="color: green;"></p>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <!-- Switch to sign up (matches sign-up page styling) -->
+    <div class="auth-switch">
+      <p>don’t have an account?</p>
+      <a href="signup-page.html">
+        <img src="sign-up-button.png" alt="sign up" class="login-image-button">
+      </a>
     </div>
-    <script src="login.js"></script>
+  </div>
+
+  <script src="login.js"></script>
 </body>
 </html>
